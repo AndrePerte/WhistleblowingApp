@@ -1,1 +1,22 @@
-**/bin
+# -----------------
+# Cartelle da ignorare
+# -----------------
+/[Bb]in/
+/[Oo]bj/
+/[Rr]elease/
+/[Dd]ebug/
+
+# -----------------
+# File specifici di Visual Studio
+# -----------------
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# -----------------
+# Cache e dati temporanei
+# -----------------
+.vs/
+.idea/
+*.sw?
