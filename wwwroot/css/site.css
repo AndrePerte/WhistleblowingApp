@@ -1,0 +1,89 @@
+/* wwwroot/css/site.css */
+
+/* Titoli */
+h1, h2, h3 {
+    font-family: 'Arial', sans-serif;
+    color: #007A65; /* Verde scuro */
+}
+
+/* Testo generico */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #007A65 !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    color: white !important;
+    font-size: 1.5rem;
+}
+
+/* Contenuto principale */
+.container {
+    max-width: 1200px;
+    padding-top: 50px;
+}
+
+/* Form */
+.form-control {
+    border-radius: 0.25rem;
+    border-color: #ced4da;
+}
+
+.form-control:focus {
+    border-color: #007A65;
+    box-shadow: 0 0 0 0.25rem rgba(0, 100, 0, 0.25);
+}
+
+/* Button */
+.btn-success {
+    background-color: #007A65 !important;
+    border-color: #007A65 !important;
+}
+
+.btn-success:hover {
+    background-color: #005200 !important;
+    border-color: #005200 !important;
+}
+
+/* Footer */
+footer {
+    background-color: #007A65;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    width: 100%;
+    display: flex; /* Assicura che funzioni anche senza Bootstrap */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Altre classi utili */
+.alert {
+    margin-bottom: 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Personalizzazione specifica per le pagine */
+.whistleblowing-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.whistleblowing-body {
+    margin-bottom: 20px;
+}
+
+.whistleblowing-footer {
+    text-align: center;
+    margin-top: 20px;
+}

@@ -1,0 +1,25 @@
+@model WhistleblowingApp.Models.Segnalazione
+
+<h2>Codice Generato</h2>
+<input type="text" value="@Model.Codice" readonly id="codeInput" />
+<button onclick="copyCode()">Copia</button>
+
+<div class="form-check">
+    <input type="checkbox" id="confirmCheck" class="form-check-input" />
+    <label for="confirmCheck" class="form-check-label">Ho copiato il codice</label>
+</div>
+
+<a href="#" id="continueLink" class="btn btn-primary" disabled>Vai alla Segnalazione</a>
+
+<script>
+    function copyCode() {
+        const input = document.getElementById('codeInput');
+        input.select();
+        document.execCommand('copy');
+        alert('Codice copiato negli appunti!');
+    }
+
+    document.getElementById('confirmCheck').addEventListener('change', function () {
+        document.getElementById('continueLink').disabled = !this.checked;
+    });
+</script>

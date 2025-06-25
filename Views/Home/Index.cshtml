@@ -1,0 +1,27 @@
+<!-- Views/Home/Index.cshtml -->
+@{
+    ViewData["Title"] = "Whistleblowing - Segnalazione condotte illecite";
+}
+
+<div class="whistleblowing-header">
+    <h1>Whistleblowing - Segnalazione condotte illecite</h1>
+    <p>
+        Il D.Lgs. n. 24/2023 ha introdotto un complesso di prescrizioni e regole volte a promuovere l'adozione ed attuazione di un adeguato sistema di gestione delle segnalazioni di condotte indebite
+    </p>
+</div>
+
+<form asp-controller="Segnalazione" asp-action="Create">
+    <button type="submit" class="btn btn-success">Invia una Segnalazione</button>
+</form>
+
+<hr />
+
+<p>Digitare qui il codice di 10 cifre che hai ottenuto da una precedente segnalazione per accedervi:</p>
+<form asp-controller="Segnalazione" asp-action="Access">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Codice Segnalazione" name="codice" />
+        <button class="btn btn-success" type="submit">Invia</button>
+    </div>
+</form>
+
+<p>Se vuoi saperne di più riguardo sul whistleblowing, clicca qui: </p><a href="@Url.Action("DownloadPDF", "Home")" class="btn btn-primary">Scarica PDF</a>

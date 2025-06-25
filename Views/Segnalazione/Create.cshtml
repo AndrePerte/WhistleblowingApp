@@ -1,0 +1,32 @@
+@model WhistleblowingApp.Models.Segnalazione
+
+@{
+    ViewData["Title"] = "Invia una Segnalazione";
+}
+
+<h1>Invia una Segnalazione</h1>
+
+<form asp-action="Submit" method="post">
+    <!-- Tutti i campi -->
+    <div class="mb-3">
+        <label>Descrizione della Segnalazione</label>
+        <textarea asp-for="Descrizione" class="form-control" rows="5" required></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label>Persone Coinvolte</label>
+        <textarea asp-for="PersoneCoinvolte" class="form-control" rows="5"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label>Data dell'Illecito</label>
+        <input asp-for="DataIllecito" class="form-control" type="datetime-local" />
+    </div>
+
+    <div class="mb-3 form-check">
+        <input asp-for="ConsapevolezzaConfidenzialita" type="checkbox" class="form-check-input" required />
+        <label class="form-check-label">Confermo di aver letto...</label>
+    </div>
+
+    <button type="submit" class="btn btn-success">Invia</button>
+</form>
