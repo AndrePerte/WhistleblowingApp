@@ -4,32 +4,34 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Whistleblowing System</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"  rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <style>
-        body {
-            padding-top: 60px;
-        }
-    </style>
 </head>
-<body class="d-flex flex-column min-vh-100">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">Whistleblowing</a>
+<body class="layout-body">
+    <header>
+        <div class="header-structure">
+            <div class="header-icon left-icon">
+                <img src="~/images/spia-icon.png" alt="Spia" asp-append-version="true" />
+            </div>
+            <div class="header-title">
+                Whistleblowing - Segnalazione condotte illecite
+            </div>
+            <div class="header-icon right-icon">
+                <img src="~/images/utente-icon.png" alt="Utente" asp-append-version="true" />
+            </div>
         </div>
-    </nav>
+    </header>
 
-    <div class="container flex-grow-1">
+
+    <main>
         @RenderBody()
-    </div>
+    </main>
 
-    <footer class="py-3 mt-auto d-flex align-items-center justify-content-center">
-        <div class="container">
-            <p class="mb-0">© 2025 PERTEGATO ANDREA</p>
+    <footer class="footer-custom">
+        <div class="footer-container">
+            <span class="footer-text nome-azienda">© 2025 Whistleblowing</span>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> 
     @RenderSection("Scripts", required: false)
 </body>
 </html>

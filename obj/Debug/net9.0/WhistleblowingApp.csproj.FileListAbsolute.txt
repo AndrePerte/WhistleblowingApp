@@ -113,7 +113,6 @@ C:\Users\crist\Desktop\Uni\progetto-uomo\WhistleblowingApp\obj\Debug\net9.0\rjim
 C:\Users\crist\Desktop\Uni\progetto-uomo\WhistleblowingApp\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 C:\Users\crist\Desktop\Uni\progetto-uomo\WhistleblowingApp\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
 C:\Users\crist\Desktop\Uni\progetto-uomo\WhistleblowingApp\obj\Debug\net9.0\scopedcss\bundle\WhistleblowingApp.styles.css
-C:\Users\crist\Desktop\Uni\progetto-uomo\WhistleblowingApp\obj\Debug\net9.0\compressed\6jlcitkszu-p49cz5hhj0.gz
 C:\Users\crist\Desktop\Uni\progetto-uomo\WhistleblowingApp\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\crist\Desktop\Uni\progetto-uomo\WhistleblowingApp\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\Users\crist\Desktop\Uni\progetto-uomo\WhistleblowingApp\obj\Debug\net9.0\staticwebassets.development.json
@@ -124,3 +123,4 @@ C:\Users\crist\Desktop\Uni\progetto-uomo\WhistleblowingApp\obj\Debug\net9.0\refi
 C:\Users\crist\Desktop\Uni\progetto-uomo\WhistleblowingApp\obj\Debug\net9.0\WhistleblowingApp.pdb
 C:\Users\crist\Desktop\Uni\progetto-uomo\WhistleblowingApp\obj\Debug\net9.0\WhistleblowingApp.genruntimeconfig.cache
 C:\Users\crist\Desktop\Uni\progetto-uomo\WhistleblowingApp\obj\Debug\net9.0\ref\WhistleblowingApp.dll
+C:\Users\crist\Desktop\Uni\progetto-uomo\WhistleblowingApp\obj\Debug\net9.0\compressed\6jlcitkszu-lk69wyo7fg.gz
