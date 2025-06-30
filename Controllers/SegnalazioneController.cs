@@ -24,16 +24,38 @@ namespace WhistleblowingApp.Controllers
         [HttpPost]
         public IActionResult Submit(Segnalazione segnalazione)
         {
-            if (!ModelState.IsValid) return View("Create", segnalazione);
+            Console.WriteLine("Submit() invocato");
+            Console.WriteLine($"ModelState IsValid: {ModelState.IsValid}");
+            
+            if (!ModelState.IsValid)
+            {
+                Console.WriteLine("Errore di validazione:");
+                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
+                return View("Create", segnalazione);
+            }
 
-            segnalazione.Codice = CodeGenerator.GenerateUniqueCode(_context);
-            segnalazione.DataCreazione = DateTime.Now;
-            segnalazione.Stato = "In attesa";
+            try
+            {
+                segnalazione.Codice = CodeGenerator.GenerateUniqueCode(_context);
+                segnalazione.DataCreazione = DateTime.Now;
+                segnalazione.Stato = "In attesa";
 
-            _context.Segnalazioni.Add(segnalazione);
-            _context.SaveChanges();
+                _context.Segnalazioni.Add(segnalazione);
+                _context.SaveChanges();
 
-            return RedirectToAction("Success", new { id = segnalazione.Id });
+                Console.WriteLine($"Reindirizzo a Success con ID: {segnalazione.Id}");
+
+                return RedirectToAction("Success", new { id = segnalazione.Id });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Errore durante l'invio: {ex.Message}");
+                ModelState.AddModelError("", "Si è verificato un errore durante l'invio.");
+                return View("Create", segnalazione);
+            }
         }
 
         public IActionResult Success(int id)

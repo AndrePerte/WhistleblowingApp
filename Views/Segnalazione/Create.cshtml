@@ -24,9 +24,18 @@
     </div>
 
     <div class="mb-3 form-check">
-        <input asp-for="ConsapevolezzaConfidenzialita" type="checkbox" class="form-check-input" required />
-        <label class="form-check-label">Confermo di aver letto...</label>
+        <input type="checkbox" id="consapevolezzaCheckbox" class="form-check-input" />
+        <label class="form-check-label" for="consapevolezzaCheckbox">Confermo di aver letto...</label>
     </div>
 
-    <button type="submit" class="btn btn-success">Invia</button>
+    <button type="submit" class="btn btn-success" id="submitButton" disabled>Invia</button>
 </form>
+
+@section Scripts {
+    <script>
+        document.getElementById('consapevolezzaCheckbox').addEventListener('change', function () {
+            var submitButton = document.getElementById('submitButton');
+            submitButton.disabled = !this.checked;
+        });
+    </script>
+}

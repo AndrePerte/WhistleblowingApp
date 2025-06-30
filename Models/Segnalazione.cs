@@ -4,7 +4,7 @@ namespace WhistleblowingApp.Models
     {
         required public int Id { get; set; }
 
-        required public string Codice { get; set; } // Codice unico a 10 cifre
+        public string? Codice { get; set; } // Codice unico a 10 cifre
 
         required public string Descrizione { get; set; }
         public string? PersoneCoinvolte { get; set; }
@@ -19,9 +19,6 @@ namespace WhistleblowingApp.Models
         public string? Cognome { get; set; }
         public string? Email { get; set; }
         public string? Telefono { get; set; }
-
-        public bool IdentificativoFornito { get; set; }
-        public bool ConsapevolezzaConfidenzialita { get; set; }
 
         public string Stato { get; set; } = "In attesa";
         public DateTime DataCreazione { get; set; } = DateTime.Now;

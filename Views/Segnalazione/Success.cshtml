@@ -1,25 +1,51 @@
 @model WhistleblowingApp.Models.Segnalazione
 
 <h2>Codice Generato</h2>
-<input type="text" value="@Model.Codice" readonly id="codeInput" />
-<button onclick="copyCode()">Copia</button>
 
-<div class="form-check">
+<input type="text" value="@Model.Codice" readonly id="codeInput" class="form-control" />
+<button onclick="copyCode()" class="btn btn-secondary mt-2">Copia</button>
+
+<div class="form-check mt-3">
     <input type="checkbox" id="confirmCheck" class="form-check-input" />
     <label for="confirmCheck" class="form-check-label">Ho copiato il codice</label>
 </div>
 
-<a href="#" id="continueLink" class="btn btn-primary" disabled>Vai alla Segnalazione</a>
+<a id="continueLink" class="btn btn-primary mt-3" disabled>Vai alla Segnalazione</a>
 
+@section Scripts {
 <script>
+    // Funzione per copiare il codice negli appunti
     function copyCode() {
         const input = document.getElementById('codeInput');
-        input.select();
-        document.execCommand('copy');
-        alert('Codice copiato negli appunti!');
+        const code = input.value;
+
+        navigator.clipboard.writeText(code).then(function () {
+            alert('Codice copiato negli appunti!');
+        }).catch(function (err) {
+            alert('Errore durante la copia: ' + err);
+        });
     }
 
-    document.getElementById('confirmCheck').addEventListener('change', function () {
-        document.getElementById('continueLink').disabled = !this.checked;
+    // Quando la pagina è caricata
+    document.addEventListener("DOMContentLoaded", function () {
+        const checkbox = document.getElementById('confirmCheck');
+        const link = document.getElementById('continueLink');
+
+        // Imposta l'URL dinamico verso Dettagli
+        link.href = '@Url.Action("Dettagli", "Segnalazione")?id=@Model.Id';
+
+        // Abilita/disabilita il link in base allo stato della checkbox
+        checkbox.addEventListener('change', function () {
+            link.disabled = !this.checked;
+        });
+
+        // Blocca il click sul link finché la checkbox non è selezionata
+        link.addEventListener('click', function (e) {
+            if (!checkbox.checked) {
+                e.preventDefault();
+                alert("Per proseguire, conferma di aver copiato il codice.");
+            }
+        });
     });
 </script>
+}
