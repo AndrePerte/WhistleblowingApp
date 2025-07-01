@@ -3,7 +3,7 @@
 <h2>Codice Generato</h2>
 
 <input type="text" value="@Model.Codice" readonly id="codeInput" class="form-control" />
-<button onclick="copyCode()" class="btn btn-secondary mt-2">Copia</button>
+    <button onclick="copyCode()" class="btn btn-secondary mt-2">Copia</button>
 
 <div class="form-check mt-3">
     <input type="checkbox" id="confirmCheck" class="form-check-input" />
@@ -20,10 +20,10 @@
         const code = input.value;
 
         navigator.clipboard.writeText(code).then(function () {
-            alert('Codice copiato negli appunti!');
+                alert('Codice copiato negli appunti!');
         }).catch(function (err) {
             alert('Errore durante la copia: ' + err);
-        });
+            });
     }
 
     // Quando la pagina è caricata
