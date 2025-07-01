@@ -9,8 +9,10 @@ namespace WhistleblowingApp.Models
         required public string Descrizione { get; set; }
         public string? PersoneCoinvolte { get; set; }
         public string? AltriConoscenza { get; set; }
+        public string? AltriAConoscenza { get; set; }
 
         public DateTime? DataIllecito { get; set; }
+        public TimeSpan? OraIllecito { get; set; }
 
         required public bool RischioRitorsione { get; set; }
         required public bool PericoloImminente { get; set; }
