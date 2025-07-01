@@ -4,38 +4,89 @@
     ViewData["Title"] = "Invia una Segnalazione";
 }
 
-<h1>Invia una Segnalazione</h1>
-
-<form asp-action="Submit" method="post">
-    <!-- Tutti i campi -->
-    <div class="mb-3">
-        <label>Descrizione della Segnalazione</label>
-        <textarea asp-for="Descrizione" class="form-control" rows="5" required></textarea>
+<div class="segnalazione-create-wrapper">
+    <div class="segnalazione-avviso">
+        Ricorda che queste informazioni possono avere importanza giuridica e/o legale. Impegnati a mantenerne la dovuta riservatezza.
     </div>
-
-    <div class="mb-3">
-        <label>Persone Coinvolte</label>
-        <textarea asp-for="PersoneCoinvolte" class="form-control" rows="5"></textarea>
-    </div>
-
-    <div class="mb-3">
-        <label>Data dell'Illecito</label>
-        <input asp-for="DataIllecito" class="form-control" type="datetime-local" />
-    </div>
-
-    <div class="mb-3 form-check">
-        <input type="checkbox" id="consapevolezzaCheckbox" class="form-check-input" />
-        <label class="form-check-label" for="consapevolezzaCheckbox">Confermo di aver letto...</label>
-    </div>
-
-    <button type="submit" class="btn btn-success" id="submitButton" disabled>Invia</button>
-</form>
+    <form asp-action="Submit" method="post" class="segnalazione-form-wide">
+        <div class="segnalazione-field">
+            <label for="Descrizione">Descrizione: <span style="color:red">*</span></label>
+            <textarea asp-for="Descrizione" id="Descrizione" class="segnalazione-textarea" rows="4" required></textarea>
+        </div>
+        <div class="segnalazione-field">
+            <label for="PersoneCoinvolte">Persone Coinvolte:</label>
+            <textarea asp-for="PersoneCoinvolte" id="PersoneCoinvolte" class="segnalazione-textarea" rows="3"></textarea>
+        </div>
+        <div class="segnalazione-field">
+            <label for="AltriAConoscenza">Altri a Conoscenza:</label>
+            <textarea asp-for="AltriAConoscenza" id="AltriAConoscenza" class="segnalazione-textarea" rows="3"></textarea>
+        </div>
+        <div class="segnalazione-row-domande">
+            <div class="segnalazione-domanda">
+                <label>Ritieni che questa segnalazione possa comportare un rischio di ritorsione? <span style="color:red">*</span></label>
+                <div class="segnalazione-radio-group">
+                    <input type="radio" name="RischioRitorsione" id="RischioSi" value="true" required class="segnalazione-radio" /> <label for="RischioSi" class="segnalazione-radio-label">Sì</label>
+                    <input type="radio" name="RischioRitorsione" id="RischioNo" value="false" class="segnalazione-radio" /> <label for="RischioNo" class="segnalazione-radio-label">No</label>
+                </div>
+            </div>
+            <div class="segnalazione-domanda">
+                <label>Ritieni che la violazione segnalata possa costituire un pericolo per il pubblico interesse? <span style="color:red">*</span></label>
+                <div class="segnalazione-radio-group">
+                    <input type="radio" name="PericoloPubblico" id="PericoloSi" value="true" required class="segnalazione-radio" /> <label for="PericoloSi" class="segnalazione-radio-label">Sì</label>
+                    <input type="radio" name="PericoloPubblico" id="PericoloNo" value="false" class="segnalazione-radio" /> <label for="PericoloNo" class="segnalazione-radio-label">No</label>
+                </div>
+            </div>
+        </div>
+        <div class="segnalazione-domanda">
+            <label>Vuoi fornire informazioni identificative? Potrai sempre farlo in un secondo momento.</label>
+            <div class="segnalazione-radio-group">
+                <input type="radio" name="FornisciIdentita" id="IdentitaSi" value="Si" class="segnalazione-radio" /> <label for="IdentitaSi" class="segnalazione-radio-label">Sì</label>
+                <input type="radio" name="FornisciIdentita" id="IdentitaNo" value="No" class="segnalazione-radio" checked /> <label for="IdentitaNo" class="segnalazione-radio-label">No</label>
+            </div>
+        </div>
+        <div id="identitaFields" style="display:none;">
+            <div class="segnalazione-row-identita">
+                <div class="segnalazione-field">
+                    <label for="Nome">Nome</label>
+                    <input asp-for="Nome" id="Nome" class="segnalazione-identita-input" />
+                </div>
+                <div class="segnalazione-field">
+                    <label for="Cognome">Cognome</label>
+                    <input asp-for="Cognome" id="Cognome" class="segnalazione-identita-input" />
+                </div>
+            </div>
+            <div class="segnalazione-row-identita">
+                <div class="segnalazione-field">
+                    <label for="Email">Email</label>
+                    <input asp-for="Email" id="Email" class="segnalazione-identita-input" />
+                </div>
+                <div class="segnalazione-field">
+                    <label for="Telefono">Telefono</label>
+                    <input asp-for="Telefono" id="Telefono" class="segnalazione-identita-input" />
+                </div>
+            </div>
+        </div>
+        <div class="segnalazione-checkbox-invia-row">
+            <input type="checkbox" id="consapevolezzaCheckbox" class="segnalazione-checkbox-input" required />
+            <label class="segnalazione-checkbox-label-small" for="consapevolezzaCheckbox">Sono a conoscenza che queste informazioni sono da ritenersi confidenziali e vanno mantenute con la dovuta riservatezza</label>
+            <button type="submit" class="segnalazione-btn-invia" id="submitButton" disabled>Invia</button>
+        </div>
+    </form>
+</div>
 
 @section Scripts {
     <script>
+        // Abilita/disabilita submit
         document.getElementById('consapevolezzaCheckbox').addEventListener('change', function () {
             var submitButton = document.getElementById('submitButton');
             submitButton.disabled = !this.checked;
+        });
+        // Mostra/nasconde i campi identificativi
+        document.querySelectorAll('input[name="FornisciIdentita"]').forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                var fields = document.getElementById('identitaFields');
+                fields.style.display = (document.getElementById('IdentitaSi').checked) ? 'block' : 'none';
+            });
         });
     </script>
 }
