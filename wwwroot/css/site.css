@@ -1,89 +1,198 @@
-/* wwwroot/css/site.css */
-
-/* Titoli */
-h1, h2, h3 {
-    font-family: 'Arial', sans-serif;
-    color: #007A65; /* Verde scuro */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-/* Testo generico */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
-}
-
-/* Navbar */
-.navbar {
-    background-color: #007A65 !important;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.navbar-brand {
-    color: white !important;
-    font-size: 1.5rem;
-}
-
-/* Contenuto principale */
-.container {
-    max-width: 1200px;
-    padding-top: 50px;
-}
-
-/* Form */
-.form-control {
-    border-radius: 0.25rem;
-    border-color: #ced4da;
-}
-
-.form-control:focus {
-    border-color: #007A65;
-    box-shadow: 0 0 0 0.25rem rgba(0, 100, 0, 0.25);
-}
-
-/* Button */
-.btn-success {
-    background-color: #007A65 !important;
-    border-color: #007A65 !important;
-}
-
-.btn-success:hover {
-    background-color: #005200 !important;
-    border-color: #005200 !important;
-}
-
-/* Footer */
-footer {
-    background-color: #007A65;
-    color: white;
-    text-align: center;
-    padding: 15px 0;
+html, body {
     width: 100%;
-    display: flex; /* Assicura che funzioni anche senza Bootstrap */
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+    background: #f7f7f7;
+}
+
+.layout-body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 110px;
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+}
+
+.header-structure {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0 40px;
+    gap: 60px;
+}
+
+.header-icon {
+    display: flex;
     align-items: center;
     justify-content: center;
 }
+.left-icon img {
+    width: 100px;
+}
+.right-icon img {
+    width: 50px;
 
-/* Altre classi utili */
-.alert {
-    margin-bottom: 20px;
+}
+.header-title {
+    color: #007A65;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    flex: 1;
+    margin: 0 40px;
 }
 
-.text-center {
-    text-align: center;
+main, .main-content {
+    flex: 1;
+    width: 100%;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 8px;
+    padding: 80px 32px 40px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 120px;
 }
 
-/* Personalizzazione specifica per le pagine */
-.whistleblowing-header {
-    text-align: center;
+.paragrafo-introduzione {
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.6;
+    text-align: left;
+    width: 100%;
+}
+
+.bottone-principale {
+    font-size: 1.2rem;
+    background-color: #007A65;
+    color: white;
+    border: none;
+    padding: 0.75rem 2.5rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.10);
+    transition: background 0.2s;
+}
+.bottone-principale:hover {
+    background-color: #005f50;
+}
+
+.sezione-codice-accesso {
+    width: 100%;
     margin-bottom: 30px;
-}
-
-.whistleblowing-body {
-    margin-bottom: 20px;
-}
-
-.whistleblowing-footer {
     text-align: center;
-    margin-top: 20px;
+}
+.form-accesso-codice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+.input-codice {
+    padding: 0.5rem;
+    font-size: 1rem;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+}
+.bottone-invia-codice {
+    background-color: #007A65;
+    color: white;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.bottone-invia-codice:hover {
+    background-color: #005f50;
+}
+
+.sezione-pdf {
+    margin-top: 40px;
+    text-align: left;
+    width: 100%;
+}
+.bottone-pdf {
+    background-color: #007A65;
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 0.95rem;
+    margin-left: 10px;
+    transition: background 0.2s;
+}
+.bottone-pdf:hover {
+    background-color: #005f50;
+}
+
+.footer-custom {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #007A65;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 56px;
+    z-index: 1001;
+}
+.footer-container {
+    width: 100%;
+    text-align: center;
+    padding: 0;
+}
+.footer-text.nome-azienda {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+@media (max-width: 1000px) {
+    .header-structure {
+        padding: 0 10px;
+        gap: 20px;
+    }
+    .header-title {
+        margin: 0 10px;
+        font-size: 1.2rem;
+    }
+    .left-icon img {
+        width: 80px;
+
+    }
+    main, .main-content {
+        padding: 80px 10px 30px 10px;
+    }
 }
