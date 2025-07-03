@@ -4,7 +4,7 @@ namespace WhistleblowingApp.Models
     {
         required public int Id { get; set; }
 
-        public string? Codice { get; set; } // Codice unico a 10 cifre
+        public string Codice { get; set; } = string.Empty;
 
         required public string Descrizione { get; set; }
         public string? PersoneCoinvolte { get; set; }

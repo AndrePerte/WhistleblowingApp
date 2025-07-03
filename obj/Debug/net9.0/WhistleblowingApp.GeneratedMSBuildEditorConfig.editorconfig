@@ -9,45 +9,41 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WhistleblowingApp
 build_property.RootNamespace = WhistleblowingApp
-build_property.ProjectDir = C:\Users\crist\Desktop\Uni\progetto-uomo\WhistleblowingApp\
+build_property.ProjectDir = C:\Users\perte\OneDrive\Desktop\Whistleblowing\WhistleblowingApp\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\crist\Desktop\Uni\progetto-uomo\WhistleblowingApp
+build_property.MSBuildProjectDirectory = C:\Users\perte\OneDrive\Desktop\Whistleblowing\WhistleblowingApp
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/crist/Desktop/Uni/progetto-uomo/WhistleblowingApp/Views/Home/Index.cshtml]
+[C:/Users/perte/OneDrive/Desktop/Whistleblowing/WhistleblowingApp/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/crist/Desktop/Uni/progetto-uomo/WhistleblowingApp/Views/Segnalazione/Create.cshtml]
+[C:/Users/perte/OneDrive/Desktop/Whistleblowing/WhistleblowingApp/Views/Segnalazione/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VnbmFsYXppb25lXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-<<<<<<< HEAD
 [C:/Users/perte/OneDrive/Desktop/Whistleblowing/WhistleblowingApp/Views/Segnalazione/Dettagli.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VnbmFsYXppb25lXERldHRhZ2xpLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/perte/OneDrive/Desktop/Whistleblowing/WhistleblowingApp/Views/Segnalazione/Success.cshtml]
-=======
-[C:/Users/crist/Desktop/Uni/progetto-uomo/WhistleblowingApp/Views/Segnalazione/Success.cshtml]
->>>>>>> cristian
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VnbmFsYXppb25lXFN1Y2Nlc3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/crist/Desktop/Uni/progetto-uomo/WhistleblowingApp/Views/Shared/_Layout.cshtml]
+[C:/Users/perte/OneDrive/Desktop/Whistleblowing/WhistleblowingApp/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/crist/Desktop/Uni/progetto-uomo/WhistleblowingApp/Views/_ViewImports.cshtml]
+[C:/Users/perte/OneDrive/Desktop/Whistleblowing/WhistleblowingApp/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/crist/Desktop/Uni/progetto-uomo/WhistleblowingApp/Views/_ViewStart.cshtml]
+[C:/Users/perte/OneDrive/Desktop/Whistleblowing/WhistleblowingApp/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

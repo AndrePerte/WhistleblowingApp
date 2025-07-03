@@ -65,22 +65,32 @@ namespace WhistleblowingApp.Controllers
             return View(segnalazione);
         }
 
-        [HttpGet]
-        public IActionResult Access()
-        {
-            return View();
-        }
-
         [HttpPost]
         public IActionResult Access(string codice)
         {
-            if (string.IsNullOrEmpty(codice)) ModelState.AddModelError("", "Codice non valido.");
-            var segnalazione = _context.Segnalazioni.FirstOrDefault(s => s.Codice == codice);
-            if (segnalazione == null) ModelState.AddModelError("", "Codice non trovato.");
+            if (string.IsNullOrEmpty(codice))
+            {
+                TempData["CodiceError"] = "Nessun codice inserito";
+            }
+            else if (codice.Length != 10 || !codice.All(char.IsDigit))
+            {
+                TempData["CodiceError"] = "Il codice deve essere di 10 cifre";
+            }
+            else
+            {
+                var segnalazione = _context.Segnalazioni.FirstOrDefault(s => s.Codice == codice);
 
-            if (!ModelState.IsValid) return View();
+                if (segnalazione == null)
+                {
+                    TempData["CodiceError"] = "Nessuna segnalazione con questo codice";
+                }
+                else
+                {
+                    return RedirectToAction("Dettagli", new { id = segnalazione.Id });
+                }
+            }
 
-            return RedirectToAction("Dettagli", new { id = segnalazione.Id });
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Dettagli(int id)

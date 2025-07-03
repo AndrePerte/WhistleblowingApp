@@ -11,11 +11,21 @@
 
     <div class="sezione-codice-accesso">
         <p>Digita qui il codice che hai ottenuto da una precedente segnalazione per accedervi:</p>
-        <form asp-controller="Segnalazione" asp-action="Access" class="form-accesso-codice">
+        <form asp-controller="Segnalazione" asp-action="Access" class="form-accesso-codice" method="post">
             <input type="text" class="input-codice" placeholder="Codice Segnalazione" name="codice" />
             <button type="submit" class="bottone-invia-codice">Invia</button>
         </form>
     </div>
+
+    @if (!string.IsNullOrEmpty(TempData["CodiceError"] as string))
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                var errorMessage = '@TempData["CodiceError"]';
+                alert(errorMessage);
+            };
+        </script>
+    }
 
     <div class="sezione-pdf">
         <span>Se vuoi saperne di più sul whistleblowing, clicca qui:</span>
