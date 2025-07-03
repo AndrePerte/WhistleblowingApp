@@ -26,7 +26,7 @@ namespace WhistleblowingApp.Controllers
         {
             Console.WriteLine("Submit() invocato");
             Console.WriteLine($"ModelState IsValid: {ModelState.IsValid}");
-            
+
             if (!ModelState.IsValid)
             {
                 Console.WriteLine("Errore di validazione:");
@@ -44,6 +44,15 @@ namespace WhistleblowingApp.Controllers
                 segnalazione.Stato = "In attesa";
 
                 _context.Segnalazioni.Add(segnalazione);
+                _context.SaveChanges();
+
+                 var messaggio = new MessaggioChat
+                {
+                    Testo = "Salve, le chiedo di allegare una screenshot nell'apposito riquadro qui sopra e darmi conferma.",
+                    Mittente = "Operatore",
+                    SegnalazioneId = segnalazione.Id
+                };
+                _context.ChatMessaggi.Add(messaggio);
                 _context.SaveChanges();
 
                 Console.WriteLine($"Reindirizzo a Success con ID: {segnalazione.Id}");
@@ -95,9 +104,30 @@ namespace WhistleblowingApp.Controllers
 
         public IActionResult Dettagli(int id)
         {
-            var segnalazione = _context.Segnalazioni.Find(id);
+            var segnalazione = _context.Segnalazioni
+                .Include(s => s.MessaggiChat)
+                .FirstOrDefault(s => s.Id == id);
+
             if (segnalazione == null) return NotFound();
             return View(segnalazione);
+        }
+        
+        [HttpPost]
+        public IActionResult InviaMessaggio(int segnalazioneId, string testo)
+        {
+            if (string.IsNullOrWhiteSpace(testo)) return BadRequest();
+
+            var messaggio = new MessaggioChat
+            {
+                Testo = testo,
+                Mittente = "Utente",
+                SegnalazioneId = segnalazioneId
+            };
+
+            _context.ChatMessaggi.Add(messaggio);
+            _context.SaveChanges();
+
+            return RedirectToAction("Dettagli", new { id = segnalazioneId });
         }
     }
 }

@@ -132,55 +132,53 @@
         </div>
     </div>
 
-    <!-- Commenti -->
+    <!-- Sezione Chat -->
     <div class="card mb-4">
         <div class="card-header">
-            <h5>Commenti</h5>
+            <h5>Chat con Operatore</h5>
         </div>
         <div class="card-body">
-            <!-- Chat -->
-            <div id="chatBox" class="mb-3" style="max-height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9;">
-                <!-- Messaggio prestampato dell'operatore -->
-                <div class="d-flex flex-column mb-2">
-                    <strong class="text-primary">Operatore:</strong>
-                    <span class="bg-light p-2 rounded">Salve, le chiedo di allegare una screenshot nell’apposito riquadro qui sopra e darmi conferma.</span>
-                </div>
-
-                <!-- Risposta utente (esempio statico) -->
+            <!-- Area chat -->
+            <div id="chatBox" style="max-height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9;">
+                @foreach (var messaggio in Model.MessaggiChat.OrderByDescending(m => m.DataInvio))
+                {
+                    <div class="d-flex flex-column @(messaggio.Mittente == "Utente" ? "align-items-end" : "") mb-2">
+                        <strong>@(messaggio.Mittente)</strong>
+                        <span class="bg-@(messaggio.Mittente == "Utente" ? "success text-white" : "light") p-2 rounded">
+                            @messaggio.Testo
+                        </span>
+                    </div>
+                }
             </div>
 
-            <!-- Form per inviare un nuovo messaggio -->
-            <form id="chatForm" class="d-flex mt-3">
-                <input type="text" id="userMessage" class="form-control me-2" placeholder="Scrivi una risposta..." />
-                <button type="submit" class="btn btn-success">Rispondi</button>
+            <!-- Form per rispondere -->
+            <form asp-action="InviaMessaggio" id="chatForm" method="post" class="mt-3 d-flex">
+                <input type="hidden" name="segnalazioneId" value="@Model.Id" />
+                <input type="text" name="testo" class="form-control me-2" placeholder="Scrivi una risposta..." required />
+                <button type="submit" class="btn btn-success">Invia</button>
             </form>
         </div>
     </div>
 
-    <!-- Script JavaScript per simulare l'invio dei messaggi -->
     @section Scripts {
     <script>
-        document.getElementById("chatForm")?.addEventListener("submit", function (e) {
+        document.getElementById("chatForm")?.addEventListener("submit", async function (e) {
             e.preventDefault();
 
-            const input = document.getElementById("userMessage");
-            const message = input.value.trim();
+            const formData = new FormData(this);
+            const url = this.getAttribute("action");
 
-            if (!message) return;
+            const response = await fetch(url, {
+                method: "POST",
+                body: new URLSearchParams(formData)
+            });
 
-            const chatBox = document.getElementById("chatForm").previousElementSibling;
-
-            // Crea il div con il messaggio dell'utente
-            const replyDiv = document.createElement("div");
-            replyDiv.className = "d-flex flex-column align-items-end mb-2";
-
-            replyDiv.innerHTML = `
-                <strong class="text-success">Tu:</strong>
-                <span class="bg-success text-white p-2 rounded">${message}</span>
-            `;
-
-            chatBox.appendChild(replyDiv);
-            input.value = "";
+            if (response.ok) {
+                location.reload(); // Ricarica solo per semplicità — puoi migliorarlo con AJAX
+            }
+            else {
+                alert("Errore durante l'invio del messaggio");
+            }
         });
     </script>
     }
