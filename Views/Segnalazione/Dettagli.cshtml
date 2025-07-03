@@ -138,14 +138,51 @@
             <h5>Commenti</h5>
         </div>
         <div class="card-body">
-            <p>Salve, le chiedo di allegare una screenshot nell’apposito riquadro qui sopra e di darmi conferma.</p>
-            <div class="d-flex justify-content-end mt-3">
-                <button type="button" class="btn btn-success">Invia</button>
+            <!-- Chat -->
+            <div id="chatBox" class="mb-3" style="max-height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9;">
+                <!-- Messaggio prestampato dell'operatore -->
+                <div class="d-flex flex-column mb-2">
+                    <strong class="text-primary">Operatore:</strong>
+                    <span class="bg-light p-2 rounded">Salve, le chiedo di allegare una screenshot nell’apposito riquadro qui sopra e darmi conferma.</span>
+                </div>
+
+                <!-- Risposta utente (esempio statico) -->
             </div>
+
+            <!-- Form per inviare un nuovo messaggio -->
+            <form id="chatForm" class="d-flex mt-3">
+                <input type="text" id="userMessage" class="form-control me-2" placeholder="Scrivi una risposta..." />
+                <button type="submit" class="btn btn-success">Rispondi</button>
+            </form>
         </div>
     </div>
-</div>
 
-<footer class="bg-success text-white text-center p-3 mt-5">
-    NOME AZIENDA
-</footer>
+    <!-- Script JavaScript per simulare l'invio dei messaggi -->
+    @section Scripts {
+    <script>
+        document.getElementById("chatForm")?.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const input = document.getElementById("userMessage");
+            const message = input.value.trim();
+
+            if (!message) return;
+
+            const chatBox = document.getElementById("chatForm").previousElementSibling;
+
+            // Crea il div con il messaggio dell'utente
+            const replyDiv = document.createElement("div");
+            replyDiv.className = "d-flex flex-column align-items-end mb-2";
+
+            replyDiv.innerHTML = `
+                <strong class="text-success">Tu:</strong>
+                <span class="bg-success text-white p-2 rounded">${message}</span>
+            `;
+
+            chatBox.appendChild(replyDiv);
+            input.value = "";
+        });
+    </script>
+    }
+
+</div>
