@@ -571,7 +571,8 @@ header {
     border: 1.5px solid #007A65;
     outline: none;
 }
-.dtl-btn-invia, .dtl-btn-annulla{
+
+.dtl-btn-invia, .dtl-btn-annulla, .dtl-btn-carica{
     background: #007A65;
     color: #fff;
     border-radius: 0.4rem;
@@ -584,7 +585,13 @@ header {
     box-shadow: 0 2px 8px rgba(40,167,69,0.10);
     margin-top: 0.5rem;
 }
-.dtl-btn-invia:hover {
+
+.dtl-btn-carica{
+    display: block;
+    float: right;
+}
+
+.dtl-btn-invia:hover, .dtl-btn-carica:hover{
     background: #005f50;
 }
 .dtl-btn-annulla {
@@ -733,6 +740,12 @@ header {
 
 .dtl-table tbody tr:last-child td {
     border-bottom: none;
+}
+
+@media (max-width: 768px) {
+    .col-tipo, .col-dim {
+        display: none;
+    }
 }
 
 .dtl-card-header {

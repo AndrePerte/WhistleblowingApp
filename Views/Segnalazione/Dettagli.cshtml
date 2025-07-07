@@ -147,8 +147,8 @@
                     <tr>
                         <th>Nome File</th>
                         <th>Data di caricamento</th>
-                        <th>Tipo</th>
-                        <th>Dimensione File</th>
+                        <th class="col-tipo">Tipo</th>
+                        <th class="col-dim">Dimensione File</th>
                         <th>Azioni</th>
                     </tr>
                 </thead>
@@ -160,8 +160,8 @@
                             <a href="/@allegato.FilePath" target="_blank">@allegato.NomeFile</a>
                         </td>
                             <td>@allegato.DataCaricamento.ToString("dd-MM-yyyy HH:mm")</td>
-                            <td>@allegato.TipoMime.Split('/').Last()</td>
-                            <td>@(allegato.Dimensione / 1024) KB</td>
+                            <td class="col-tipo">@allegato.TipoMime.Split('/').Last()</td>
+                            <td class="col-dim">@(allegato.Dimensione / 1024) KB</td>
                             
                             <td>
                                 <form asp-action="DeleteAttachment" method="post" style="display:inline;">
@@ -194,7 +194,7 @@
                     </div>
 
                     <p class="text-muted">Max File size: 25 MB</p>
-                    <button type="submit" class="dtl-btn-invia">Carica</button>
+                    <button type="submit" class="dtl-btn-carica">Carica</button>
                 </div>
             </form>
         </div>
