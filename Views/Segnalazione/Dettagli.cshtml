@@ -155,21 +155,17 @@
     </div>
 
     <!-- Sezione Allegati -->
-    <div class="dtl-card">
-        <div class="dtl-card-header">
+    <div class="dtl-card mb-4">
             <h5 class="dtl-card-title">Allegati</h5>
-    <div class="card">
-        <div class="card-header">
-            <h4 class="">Allegati</h4>
-        </div>
+    <div class="card mb-4">
         <div class="dtl-card-body">
             <table class="dtl-table">
                 <thead>
                     <tr>
                         <th>Nome File</th>
                         <th>Data di caricamento</th>
-                        <th>Tipo</th>
-                        <th>Dimensione File</th>
+                        <th class="col-tipo">Tipo</th>
+                        <th class="col-dim">Dimensione File</th>
                         <th>Azioni</th>
                     </tr>
                 </thead>
@@ -181,13 +177,13 @@
                             <a href="/@allegato.FilePath" target="_blank">@allegato.NomeFile</a>
                         </td>
                             <td>@allegato.DataCaricamento.ToString("dd-MM-yyyy HH:mm")</td>
-                            <td>@allegato.TipoMime.Split('/').Last()</td>
-                            <td>@(allegato.Dimensione / 1024) KB</td>
+                            <td class="col-tipo">@allegato.TipoMime.Split('/').Last()</td>
+                            <td class="col-dim">@(allegato.Dimensione / 1024) KB</td>
                             
                             <td>
                                 <form asp-action="DeleteAttachment" method="post" style="display:inline;">
                                     <input type="hidden" name="id" value="@allegato.Id" />
-                                    <button type="submit" class="btn btn-danger btn-sm">Cancella</button>
+                                    <button type="submit" class="btn-canc-img">Cancella</button>
                                 </form>
                             </td>
                             
@@ -199,49 +195,50 @@
                 <input type="hidden" name="segnalazioneId" value="@Model.Id" />
                 <div class="mb-3">
                     <label for="fileUpload">Carica un file (massimo 25 MB)</label>
-                    <input type="file" id="fileUpload" name="file" accept=".png,.jpg,.jpeg" class="form-control" />
+                    
+                    <!-- Area per trascinare e rilasciare -->
+                    <div id="dropZone" class="drop-zone text-center p-4 border rounded bg-light">
+                        <p class="text-muted">Trascina qui il file o fai clic per selezionare</p>
+                        <input type="file" id="fileUpload" name="file" accept=".png,.jpg,.jpeg" class="d-none" required />
+                        
+                        <div id="fileNameDisplay" class="text-muted">Nessun file selezionato</div>
+
+                        <button type="button" class="btn-canc-img"
+                                onclick="document.getElementById('fileUpload').click();">
+                            Scegli File
+                        </button>
+
+                    </div>
+
                     <p class="text-muted">Max File size: 25 MB</p>
-                    <button type="submit" class="btn btn-primary mt-2">Carica</button>
+                    <button type="submit" class="dtl-btn-carica">Carica</button>
                 </div>
             </form>
-
-            @if (!string.IsNullOrEmpty(TempData?.Peek("NomeFile") as string))
+        </div>
+    </div>
+</div>
+<!-- Sezione Chat -->
+<div class="card dtl-card mb-4">
+    <h5 class="dtl-card-title">Chat con Operatore</h5>
+    <div class="card-body dtl-card-body">
+        <div id="chatBox" class="chat-box">
+            @foreach (var messaggio in Model.MessaggiChat.OrderBy(m => m.DataInvio))
             {
-                <div class="mt-2 text-success">
-                    File caricato: @TempData["NomeFile"]
+                <div class="chat-message @(messaggio.Mittente == "Utente" ? "user-message" : "operator-message") mb-2">
+                    <div class="@(messaggio.Mittente == "Utente" ? "text-end" : "text-start")">
+                        <strong>@(messaggio.Mittente)</strong>
+                    </div>
+                    <div class="message-content p-2 rounded">@messaggio.Testo</div>
                 </div>
             }
         </div>
+
+        <form asp-action="InviaMessaggio" id="chatForm" method="post" class="mt-3 d-flex">
+            <input type="hidden" name="segnalazioneId" value="@Model.Id" />
+            <input type="text" name="testo" class="form-control me-2" placeholder="Scrivi una risposta..." required />
+            <button type="submit" class="dtl-btn-invia">Invia</button>
+        </form>
     </div>
-
-    <!-- Sezione Chat -->
-    <div class="card mb-4">
-        <div class="card-header">
-            <h5>Chat con Operatore</h5>
-        </div>
-        <div class="card-body">
-            <!-- Area chat -->
-            <div id="chatBox" style="max-height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9;">
-                @foreach (var messaggio in Model.MessaggiChat.OrderBy(m => m.DataInvio))
-                {
-                    <div class="d-flex flex-column @(messaggio.Mittente == "Utente" ? "align-items-end" : "") mb-2">
-                        <strong>@(messaggio.Mittente)</strong>
-                        <span class="bg-@(messaggio.Mittente == "Utente" ? "success text-white" : "light") p-2 rounded">
-                            @messaggio.Testo
-                        </span>
-                    </div>
-                }
-            </div>
-
-            <!-- Form per rispondere -->
-            <form asp-action="InviaMessaggio" id="chatForm" method="post" class="mt-3 d-flex">
-                <input type="hidden" name="segnalazioneId" value="@Model.Id" />
-                <input type="text" name="testo" class="form-control me-2" placeholder="Scrivi una risposta..." required />
-                <button type="submit" class="btn btn-success">Invia</button>
-            </form>
-        </div>
-    </div>
-
 </div>
         
 @section Scripts {
@@ -293,5 +290,39 @@
                 alert("Errore durante l'invio del messaggio");
             }
         });
+    
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('fileUpload');
+    const fileNameDisplay = document.getElementById("fileNameDisplay");
+
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('drag-over');
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+        dropZone.classList.remove('drag-over');
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('drag-over');
+
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            fileInput.files = files;
+            updateFileName();
+        }
+    });
+
+    fileInput.addEventListener("change", updateFileName);
+
+        function updateFileName() {
+            if (fileInput.files.length > 0) {
+                fileNameDisplay.textContent = fileInput.files[0].name;
+            } else {
+                fileNameDisplay.textContent = "Nessun file selezionato";
+            }
+        }
 </script>
 }
