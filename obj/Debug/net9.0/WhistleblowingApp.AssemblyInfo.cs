@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WhistleblowingApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c04b9fd0a061f93b883b2d28f29681fa5aaba48e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+822e00567232b91a4281a5d794b2a0a356868794")]
 [assembly: System.Reflection.AssemblyProductAttribute("WhistleblowingApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WhistleblowingApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
