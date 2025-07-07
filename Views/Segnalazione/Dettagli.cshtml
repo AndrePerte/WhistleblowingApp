@@ -204,14 +204,14 @@
 <div class="card dtl-card mb-4">
     <h5 class="dtl-card-title">Chat con Operatore</h5>
     <div class="card-body dtl-card-body">
-        <div id="chatBox" style="max-height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9;">
+        <div id="chatBox" class="chat-box">
             @foreach (var messaggio in Model.MessaggiChat.OrderBy(m => m.DataInvio))
             {
-                <div class="d-flex flex-column @(messaggio.Mittente == "Utente" ? "align-items-end" : "") mb-2">
-                    <strong>@messaggio.Mittente</strong>
-                    <span class="bg-@(messaggio.Mittente == "Utente" ? "success text-white" : "light") p-2 rounded">
-                        @messaggio.Testo
-                    </span>
+                <div class="chat-message @(messaggio.Mittente == "Utente" ? "user-message" : "operator-message") mb-2">
+                    <div class="@(messaggio.Mittente == "Utente" ? "text-end" : "text-start")">
+                        <strong>@(messaggio.Mittente)</strong>
+                    </div>
+                    <div class="message-content p-2 rounded">@messaggio.Testo</div>
                 </div>
             }
         </div>

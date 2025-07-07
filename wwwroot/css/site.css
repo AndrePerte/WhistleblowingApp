@@ -783,7 +783,6 @@ header {
     border-color: #0d6efd;
 }
 
-/* Messaggio Max File Size */
 .text-muted {
     margin: 10px;
     font-size: 0.9rem;
@@ -796,8 +795,8 @@ header {
     overflow-y: auto;
     border: 1px solid #ccc;
     background-color: #f9f9f9;
-    padding: 1rem;
-    border-radius: 6px;
+    padding: 10px;
+    border-radius: 0.3rem;
 }
 
 .chat-message {
@@ -805,23 +804,56 @@ header {
 }
 
 .message-content {
-    padding: 0.75rem 1rem;
-    border-radius: 6px;
+    width: fit-content;
+    max-width: 80%;
+    padding: 10px 15px;
+    border-radius: 1.2rem;
+    position: relative;
+    margin: 5px 0;
+    word-wrap: break-word;
     font-size: 0.95rem;
-    word-break: break-word;
+    line-height: 1.4;
 }
 
 .user-message .message-content {
-    background-color: #28a745;
-    color: #fff;
+    background-color: #007A65;
+    color: white;
     align-self: flex-end;
-    border-bottom-right-radius: 0;
+    border-bottom-right-radius: 0.3rem;
+    margin-left: auto;
+    text-align: right;
 }
 
 .operator-message .message-content {
-    background-color: #ffffff;
+    background-color: #e9ecef;
     color: #212529;
-    border-bottom-left-radius: 0;
     align-self: flex-start;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border-bottom-left-radius: 0.3rem;
+    margin-right: auto;
+}
+
+.chat-message strong {
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+}
+
+.text-end strong,
+.text-end {
+    display: block;
+    text-align: right;
+    margin-right: 7px;
+}
+
+.text-start strong,
+.text-start {
+    display: block;
+    text-align: left;
+    margin-left: 7px;
+}
+
+#chatForm input[type="text"] {
+    width: calc(100% - 100px);
+    padding: 0.5rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.3rem;
 }
