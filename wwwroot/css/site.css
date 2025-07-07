@@ -74,21 +74,21 @@ header {
 }
 .header-title {
     color: #007A65;
-    font-size: 2rem;
+    font-size: 1.85rem;
     font-weight: bold;
     text-align: center;
     flex: 1;
     margin: 0 40px;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1120px) {
     .header-structure {
         padding: 0 10px;
         gap: 20px;
     }
     .header-title {
         margin: 0 10px;
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     }
     .left-icon img {
         width: 80px;
@@ -239,7 +239,7 @@ header {
 }
 .success-code {
     font-size: 2.5rem;
-    font-weight: 500;
+    font-weight: bold;
     letter-spacing: 2px;
     padding-right: 5px;
 }
@@ -272,7 +272,7 @@ header {
 }
 .success-checkbox-label {
     font-size: 1.1rem;
-    font-weight: 500;
+    font-weight: bold;
 }
 .success-view-btn {
     margin-top: 32px;
@@ -284,7 +284,7 @@ header {
     width: 200px;
     border-radius: 0.3rem;
     font-size: 1.1rem;
-    font-weight: 500;
+    font-weight: bold;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
@@ -395,7 +395,7 @@ header {
 .segnalazione-radio-label {
     font-size: 1.13rem;
     color: #007A65;
-    font-weight: 600;
+    font-weight: bold;
     margin-right: 18px;
     cursor: pointer;
     user-select: none;
@@ -428,7 +428,7 @@ header {
 .segnalazione-checkbox-label-small {
     font-size: 1.05rem;
     color: #222;
-    font-weight: 400;
+    font-weight: bold;
     max-width: 500px;
     margin-bottom: 0;
 }
@@ -450,7 +450,7 @@ header {
     padding: 0.7rem 2.2rem;
     border-radius: 0.3rem;
     font-size: 1.1rem;
-    font-weight: 500;
+    font-weight: bold;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
@@ -479,3 +479,229 @@ header {
     outline: none;
     box-shadow: 0 0 0 2px #007A65;
 }
+
+/* =========================
+   DETTAGLI SEGNALAZIONE PAGE (completo)
+   ========================= */
+.dtl-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto 0 auto;
+    padding: 24px 16px 0 16px;
+}
+.dtl-container > div {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.dtl-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #007A65;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+.dtl-row {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 2rem;
+}
+.dtl-col-sx {
+    flex: 0 0 calc(60% - 15px);
+    max-width: calc(60% - 15px);
+}
+.dtl-col-dx {
+    flex: 0 0 calc(40% - 15px);
+    max-width: calc(40% - 15px);
+}
+.dtl-card {
+    background: #fff;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 1.1rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    padding: 1.2rem 1.7rem 1.7rem 1.7rem;
+}
+.dtl-card-title {
+    font-size: 1.05rem;
+    font-weight: bold;
+    background: #f5f5f5;
+    border-radius: 0.7rem 0.7rem 0 0;
+    padding: 0.7rem 1rem;
+    margin: -1.2rem -1.7rem 1.1rem -1.7rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+.dtl-label {
+    font-weight: bold;
+    color: #222;
+    display: block;
+    font-size: 1.01rem;
+}
+.dtl-list-bg {
+    background: #f5f5f5;
+    border-radius: 0.7rem;
+    padding: 0.7rem 1rem;
+    min-height: 48px;
+    margin-bottom: 0.7rem;
+}
+.dtl-badge {
+    background: #f5f5f5;
+    color: #333;
+    border-radius: 0.5rem;
+    padding: 0.32rem 1.1rem;
+    font-size: 1.01rem;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 0.7rem;
+}
+.dtl-input {
+    width: 100%;
+    padding: 0.5rem 0.8rem;
+    border: 1.2px solid #bdbdbd;
+    border-radius: 0.4rem;
+    font-size: 1rem;
+    margin-top: 0.2rem;
+    background: #fafbfc;
+    transition: border 0.2s;
+    margin-bottom: 1rem;
+}
+.dtl-input:focus {
+    border: 1.5px solid #007A65;
+    outline: none;
+}
+.dtl-btn-invia, .dtl-btn-annulla{
+    background: #007A65;
+    color: #fff;
+    border-radius: 0.4rem;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    font-weight: bold;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(40,167,69,0.10);
+    margin-top: 0.5rem;
+}
+.dtl-btn-invia:hover {
+    background: #005f50;
+}
+.dtl-btn-annulla {
+    background: #b52a37;
+    margin-right: 5px;
+}
+.dtl-btn-annulla:hover {
+    background: #93222d;
+}
+.dtl-row-list {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.2rem;
+}
+.dtl-list {
+    padding-left: 1.2rem;
+    margin: 0;
+}
+.dtl-descrizione {
+    background: #f5f5f5;
+    border-radius: 0.7rem;
+    color: #333;
+    font-size: 1.05rem;
+    padding: 0.7rem 1rem;
+    margin-bottom: 1.2rem;
+    min-height: 48px;
+    white-space: pre-line;
+}
+.dtl-form-btnrow {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* =========================
+   CAMPI ILLECITO (DATA/ORA)
+   ========================= */
+.segnalazione-row-illecito {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.segnalazione-field-illecito {
+    flex: 1 1 0;
+    min-width: 180px;
+    display: flex;
+    flex-direction: column;
+}
+@media (max-width: 700px) {
+    .segnalazione-row-illecito {
+        flex-direction: column;
+        gap: 0.7rem;
+    }
+}
+
+/* =========================
+   INFO BAR DETTAGLI (sopra)
+   ========================= */
+.dtl-info-bar {
+    display: flex;
+    background: #fff;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 1.1rem;
+    padding: 1.2rem 2rem;
+    margin-bottom: 2.2rem;
+    justify-content: space-between;
+}
+.dtl-info-block {
+    min-width: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 1.2rem;
+}
+.dtl-info-title {
+    font-size: 1rem;
+    color: #222;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+.dtl-info-value-bg {
+    background: #f5f5f5;
+    border-radius: 0.7rem;
+    padding: 0.5rem 1.1rem;
+    min-width: 120px;
+    min-height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.dtl-info-value {
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+}
+@media (max-width: 900px) {
+    .dtl-info-bar {
+        flex-wrap: wrap;
+        gap: 1.1rem;
+        padding: 1.2rem 0.5rem;
+    }
+    .dtl-info-block {
+        flex: 1 1 45%;
+        margin-right: 0;
+        width: 50%;
+        margin-bottom: 0.7rem;
+    }
+    .dtl-info-block:nth-child(1),
+    .dtl-info-block:nth-child(2) {
+        order: 1;
+    }
+    .dtl-info-block:nth-child(3),
+    .dtl-info-block:nth-child(4) {
+        order: 2;
+    }
+}
+
+.dtl-btn-annulla-visible {
+    margin-right: 5px;
+}
+
+

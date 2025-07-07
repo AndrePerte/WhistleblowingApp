@@ -2,111 +2,148 @@
 
 @{
     ViewData["Title"] = "Whistleblowing - Dettagli Segnalazione";
+    var dataSegnalazione = Model.DataCreazione;
+    var dataSegnalazioneStr = dataSegnalazione.ToString("dd-MM-yyyy HH:mm");
+    var dataScadenza = dataSegnalazione.AddMonths(1);
+    var dataScadenzaStr = dataScadenza.ToString("dd-MM-yyyy");
 }
 
-<div class="container mt-4">
-    <h2>Whistleblowing - Segnalazione condotte illecite</h2>
-
-    <!-- Informazioni generali -->
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <p><strong>Data Segnalazione:</strong> @Model.DataCreazione.ToString("dd-MM-yyyy HH:mm")</p>
+<div class="dtl-container">
+    <div class="dtl-info-bar">
+        <div class="dtl-info-block">
+            <div class="dtl-info-title">Data Segnalazione</div>
+            <div class="dtl-info-value-bg">
+                <div class="dtl-info-value">@dataSegnalazioneStr</div>
+            </div>
         </div>
-        <div class="col-md-6 text-end">
-            <p><strong>Stato:</strong> @Model.Stato</p>
+        <div class="dtl-info-block">
+            <div class="dtl-info-title">Ultimo Aggiornamento</div>
+            <div class="dtl-info-value-bg">
+                <div class="dtl-info-value">@dataSegnalazioneStr</div>
+            </div>
+        </div>
+        <div class="dtl-info-block">
+            <div class="dtl-info-title">Scadenza</div>
+            <div class="dtl-info-value-bg">
+                <div class="dtl-info-value">@dataScadenzaStr</div>
+            </div>
+        </div>
+        <div class="dtl-info-block">
+            <div class="dtl-info-title">Stato</div>
+            <div class="dtl-info-value-bg">
+                <div class="dtl-info-value">Presa in carico</div>
+            </div>
+        </div>
+    </div>
+    <!-- Corpo principale a due colonne -->
+    <div class="dtl-row">
+        <!-- Colonna Sinistra: Riepilogo Segnalazione -->
+        <div class="dtl-col-sx">
+            <div class="dtl-card">
+                <div class="dtl-card-body">
+                    <h5 class="dtl-card-title">Riepilogo Segnalazione</h5>
+                    <hr />
+                    <p class="dtl-label">Descrizione:</p>
+                    <div class="dtl-descrizione">@(string.IsNullOrEmpty(Model.Descrizione) ? "Nessuna descrizione fornita" : Model.Descrizione)</div>
+
+                    <div class="dtl-row-list">
+                        <div class="dtl-col-list">
+                            <p class="dtl-label">Persone Coinvolte:</p>
+                            <div class="dtl-list-bg">
+                                @if (!string.IsNullOrWhiteSpace(Model.PersoneCoinvolte))
+                                {
+                                    <ul class="dtl-list">
+                                        @foreach (var persona in Model.PersoneCoinvolte.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                                        {
+                                            <li>@persona.Trim()</li>
+                                        }
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <span class="dtl-muted">Nessun dato disponibile.</span>
+                                }
+                            </div>
+                        </div>
+                        <div class="dtl-col-list">
+                            <p class="dtl-label">Altri a Conoscenza:</p>
+                            <div class="dtl-list-bg">
+                                @if (!string.IsNullOrWhiteSpace(Model.AltriConoscenza))
+                                {
+                                    <ul class="dtl-list">
+                                        @foreach (var persona in Model.AltriConoscenza.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                                        {
+                                            <li>@persona.Trim()</li>
+                                        }
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <span class="dtl-muted">Nessun dato disponibile.</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dtl-row-info">
+                        <div class="dtl-col-info">
+                            <p class="dtl-label">Data Illecito:</p>
+                            <span class="dtl-badge">@(Model.DataIllecito.HasValue ? Model.DataIllecito.Value.ToString("dd-MM-yyyy HH:mm") : "Non specificata")</span>
+                        </div>
+                        <div class="dtl-col-info">
+                            <div class="dtl-info-group">
+                                <div>
+                                    <span class="dtl-label">Rischio ritorsione:</span>
+                                    <span class="dtl-status">@(Model.RischioRitorsione ? "<span class='dtl-status-si'>Sì</span>" : "<span class='dtl-status-no'>No</span>")</span>
+                                </div>
+                                <div>
+                                    <span class="dtl-label">Pericolo imminente:</span>
+                                    <span class="dtl-status">@(Model.PericoloImminente ? "<span class='dtl-status-si'>Sì</span>" : "<span class='dtl-status-no'>No</span>")</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Colonna Destra: Riepilogo Informazioni Identificative -->
+        <div class="dtl-col-dx">
+            <div class="dtl-card">
+                <h5 class="dtl-card-title">Riepilogo Informazioni Identificative</h5>
+                <form asp-action="UpdateDetails" method="post" id="identitaForm">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="dtl-form-group">
+                        <label for="Nome" class="dtl-label">Nome</label>
+                        <input asp-for="Nome" class="dtl-input" required disabled />
+                    </div>
+                    <div class="dtl-form-group">
+                        <label for="Cognome" class="dtl-label">Cognome</label>
+                        <input asp-for="Cognome" class="dtl-input" required disabled />
+                    </div>
+                    <div class="dtl-form-group">
+                        <label for="Email" class="dtl-label">Email</label>
+                        <input asp-for="Email" class="dtl-input" type="email" required disabled />
+                    </div>
+                    <div class="dtl-form-group">
+                        <label for="Telefono" class="dtl-label">Telefono</label>
+                        <input asp-for="Telefono" class="dtl-input" disabled />
+                    </div>
+                    <div class="dtl-form-btnrow">
+                        <button type="button" id="btnAnnulla" class="dtl-btn-annulla">Annulla</button>
+                        <button type="button" id="btnModifica" class="dtl-btn-invia">Modifica</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
-    <!-- Riepilogo Segnalazione -->
-    <div class="card mb-4">
-        <div class="card-body">
-            <h5>Riepilogo Segnalazione</h5>
-            <hr />
-            <p><strong>Descrizione:</strong></p>
-            <p>@(string.IsNullOrEmpty(Model.Descrizione) ? "Nessuna descrizione fornita" : Model.Descrizione)</p>
-
-            <hr />
-            <p><strong>Persone Coinvolte:</strong></p>
-            @if (!string.IsNullOrWhiteSpace(Model.PersoneCoinvolte))
-            {
-                <ul>
-                    @foreach (var persona in Model.PersoneCoinvolte.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                    {
-                        <li>@persona.Trim()</li>
-                    }
-                </ul>
-            }
-            else
-            {
-                <p>Nessun dato disponibile.</p>
-            }
-
-            <hr />
-            <p><strong>Altri a Conoscenza:</strong></p>
-            @if (!string.IsNullOrWhiteSpace(Model.AltriConoscenza))
-            {
-                <ul>
-                    @foreach (var persona in Model.AltriConoscenza.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                    {
-                        <li>@persona.Trim()</li>
-                    }
-                </ul>
-            }
-            else
-            {
-                <p>Nessun dato disponibile.</p>
-            }
-
-            <hr />
-            <p><strong>Data Illecito:</strong> @(Model.DataIllecito.HasValue ? Model.DataIllecito.Value.ToString("dd-MM-yyyy HH:mm") : "Non specificata")</p>
-
-            <hr />
-            <p><strong>Rischio Ritorsione:</strong> @(Model.RischioRitorsione ? "Sì" : "No")</p>
-
-            <hr />
-            <p><strong>Pericolo Imminente:</strong> @(Model.PericoloImminente ? "Sì" : "No")</p>
+    <!-- Sezione Allegati -->
+    <div class="dtl-card mb-4">
+        <div class="dtl-card-header">
+            <h5 class="dtl-card-title">Allegati</h5>
         </div>
-    </div>
-
-    <!-- Riepilogo Informazioni Identificative -->
-    <div class="card mb-4">
-        <div class="card-body">
-            <h5>Riepilogo Informazioni Identificative</h5>
-            <form asp-action="UpdateDetails" method="post">
-                <input type="hidden" asp-for="Id" />
-
-                <div class="mb-3">
-                    <label for="Nome">Nome *</label>
-                    <input asp-for="Nome" class="form-control" required />
-                </div>
-
-                <div class="mb-3">
-                    <label for="Cognome">Cognome *</label>
-                    <input asp-for="Cognome" class="form-control" required />
-                </div>
-
-                <div class="mb-3">
-                    <label for="Email">Email *</label>
-                    <input asp-for="Email" class="form-control" type="email" required />
-                </div>
-
-                <div class="mb-3">
-                    <label for="Telefono">Telefono</label>
-                    <input asp-for="Telefono" class="form-control" />
-                </div>
-
-                <button type="submit" class="btn btn-success">Invia</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- File allegati -->
-    <div class="card mb-4">
-        <div class="card-header">
-            <h5>Allegati</h5>
-        </div>
-        <div class="card-body">
-            <table class="table table-striped">
+        <div class="dtl-card-body">
+            <table class="dtl-table">
                 <thead>
                     <tr>
                         <th>Nome File</th>
@@ -124,28 +161,59 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="mt-3">
-                <label for="fileUpload">Carica un file (massimo 25 MB)</label>
-                <input type="file" id="fileUpload" name="fileUpload" accept=".png,.jpg,.jpeg" />
-                <p class="text-muted">Max File size: 25 MB</p>
+            <div class="dtl-upload-area">
+                <label for="fileUpload" class="dtl-label">Carica un file (massimo 25 MB)</label>
+                <input type="file" id="fileUpload" name="fileUpload" accept=".png,.jpg,.jpeg" class="dtl-input-file" />
+                <p class="dtl-muted">Max File size: 25 MB</p>
             </div>
         </div>
     </div>
 
-    <!-- Commenti -->
-    <div class="card mb-4">
-        <div class="card-header">
-            <h5>Commenti</h5>
+    <!-- Sezione Commenti -->
+    <div class="dtl-card mb-4">
+        <div class="dtl-card-header">
+            <h5 class="dtl-card-title">Commenti</h5>
         </div>
-        <div class="card-body">
-            <p>Salve, le chiedo di allegare una screenshot nell’apposito riquadro qui sopra e di darmi conferma.</p>
-            <div class="d-flex justify-content-end mt-3">
-                <button type="button" class="btn btn-success">Invia</button>
+        <div class="dtl-card-body dtl-commenti">
+            <div class="dtl-commenti-testo">
+                <p>Salve, le chiedo di allegare una screenshot nell'apposito riquadro qui sopra e di darmi conferma.</p>
+            </div>
+            <div class="dtl-form-btnrow">
+                <button type="button" class="dtl-btn-invia">Invia</button>
             </div>
         </div>
     </div>
 </div>
 
-<footer class="bg-success text-white text-center p-3 mt-5">
-    NOME AZIENDA
-</footer>
+@section Scripts {
+<script>
+    const form = document.getElementById('identitaForm');
+    const btnModifica = document.getElementById('btnModifica');
+    const btnAnnulla = document.getElementById('btnAnnulla');
+    const inputs = form.querySelectorAll('.dtl-input');
+    let originalValues = {};
+    btnAnnulla.style.display = 'none';
+    btnModifica.addEventListener('click', function() {
+        if (btnModifica.textContent === 'Modifica') {
+        
+            inputs.forEach(input => { originalValues[input.name] = input.value; input.disabled = false; });
+            btnModifica.textContent = 'Invia';
+            btnAnnulla.style.display = 'inline-block';
+        } else {
+            form.submit();
+        }
+    });
+    btnAnnulla.addEventListener('click', function() {
+        inputs.forEach(input => { input.value = originalValues[input.name] || ''; input.disabled = true; });
+        btnModifica.textContent = 'Modifica';
+        btnAnnulla.style.display = 'none'; 
+    });
+    form.addEventListener('submit', function() {
+        setTimeout(() => {
+            inputs.forEach(input => input.disabled = true);
+            btnModifica.textContent = 'Modifica';
+            btnAnnulla.style.display = 'none'; 
+        }, 100);
+    });
+</script>
+}

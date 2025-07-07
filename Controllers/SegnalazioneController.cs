@@ -89,5 +89,20 @@ namespace WhistleblowingApp.Controllers
             if (segnalazione == null) return NotFound();
             return View(segnalazione);
         }
+
+        [HttpPost]
+        public IActionResult UpdateDetails(Segnalazione model)
+        {
+            var segnalazione = _context.Segnalazioni.Find(model.Id);
+            if (segnalazione == null) return NotFound();
+
+            segnalazione.Nome = model.Nome;
+            segnalazione.Cognome = model.Cognome;
+            segnalazione.Email = model.Email;
+            segnalazione.Telefono = model.Telefono;
+
+            _context.SaveChanges();
+            return RedirectToAction("Dettagli", new { id = model.Id });
+        }
     }
 }

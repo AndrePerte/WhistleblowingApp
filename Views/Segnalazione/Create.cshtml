@@ -21,6 +21,16 @@
             <label for="AltriAConoscenza">Altri a Conoscenza:</label>
             <textarea asp-for="AltriAConoscenza" id="AltriAConoscenza" class="segnalazione-textarea" rows="3"></textarea>
         </div>
+        <div class="segnalazione-row-identita segnalazione-row-illecito">
+            <div class="segnalazione-field segnalazione-field-illecito">
+                <label for="DataIllecito">Data Illecito:</label>
+                <input asp-for="DataIllecito" id="DataIllecito" class="segnalazione-identita-input" type="date" placeholder="GG/MM/AAAA" />
+            </div>
+            <div class="segnalazione-field segnalazione-field-illecito">
+                <label for="OraIllecito">Ora Illecito:</label>
+                <input id="OraIllecito" name="OraIllecito" class="segnalazione-identita-input" type="time" step="60" />
+            </div>
+        </div>
         <div class="segnalazione-row-domande">
             <div class="segnalazione-domanda">
                 <label>Ritieni che questa segnalazione possa comportare un rischio di ritorsione? <span style="color:red">*</span></label>
@@ -62,7 +72,7 @@
                 </div>
                 <div class="segnalazione-field">
                     <label for="Telefono">Telefono</label>
-                    <input asp-for="Telefono" id="Telefono" class="segnalazione-identita-input" />
+                    <input asp-for="Telefono" id="Telefono" class="segnalazione-identita-input" type="tel" pattern="[0-9]{10}" inputmode="numeric" title="Inserisci un numero di telefono italiano di 10 cifre" maxlength="10" />
                 </div>
             </div>
         </div>
@@ -87,6 +97,9 @@
                 var fields = document.getElementById('identitaFields');
                 fields.style.display = (document.getElementById('IdentitaSi').checked) ? 'block' : 'none';
             });
+        });
+        document.getElementById('Telefono').addEventListener('input', function (e) {
+            this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);
         });
     </script>
 }
