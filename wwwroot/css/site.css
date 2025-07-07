@@ -704,4 +704,124 @@ header {
     margin-right: 5px;
 }
 
+/* Tabella Allegati */
+.dtl-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
 
+.dtl-table thead {
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+.dtl-table th,
+.dtl-table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+    text-align: center;
+}
+
+.dtl-table th {
+    border-top: none;
+    border-bottom: 2px solid #ced4da;
+}
+
+.dtl-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.dtl-card-header {
+    background-color: #e9ecef;
+    padding: 1rem 1.25rem;
+    font-weight: bold;
+    border-bottom: 1px solid #ced4da;
+}
+
+.dtl-card-body {
+    padding: 1.25rem;
+}
+
+.btn-canc-img {
+    background-color: #007A65;
+    color: white;
+    border: none;
+    padding: 0.2rem 0.7rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-canc-img:hover {
+    background-color: #005f4e;
+}
+
+.d-none{
+    display: none;
+}
+
+/* Stile per l'area di trascinamento */
+.drop-zone {
+    border: 2px dashed #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    padding: 1rem;
+    text-align: center;
+    margin: 10px;
+}
+
+.drop-zone:hover {
+    background-color: #f0f0f0;
+}
+
+.drop-zone.drag-over {
+    background-color: #e9ecef;
+    border-color: #0d6efd;
+}
+
+/* Messaggio Max File Size */
+.text-muted {
+    margin: 10px;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+/* Chat messaggi */
+.chat-box {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 6px;
+}
+
+.chat-message {
+    margin-bottom: 1rem;
+}
+
+.message-content {
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    word-break: break-word;
+}
+
+.user-message .message-content {
+    background-color: #28a745;
+    color: #fff;
+    align-self: flex-end;
+    border-bottom-right-radius: 0;
+}
+
+.operator-message .message-content {
+    background-color: #ffffff;
+    color: #212529;
+    border-bottom-left-radius: 0;
+    align-self: flex-start;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}

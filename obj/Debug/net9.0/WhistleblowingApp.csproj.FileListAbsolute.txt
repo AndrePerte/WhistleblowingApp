@@ -139,7 +139,6 @@ C:\Users\perte\OneDrive\Desktop\WhistleblowingApp\obj\Debug\net9.0\Whistleblowin
 C:\Users\perte\OneDrive\Desktop\WhistleblowingApp\obj\Debug\net9.0\WhistleblowingApp.RazorAssemblyInfo.cs
 C:\Users\perte\OneDrive\Desktop\WhistleblowingApp\obj\Debug\net9.0\WhistleblowingApp.sourcelink.json
 C:\Users\perte\OneDrive\Desktop\WhistleblowingApp\obj\Debug\net9.0\scopedcss\bundle\WhistleblowingApp.styles.css
-C:\Users\perte\OneDrive\Desktop\WhistleblowingApp\obj\Debug\net9.0\compressed\6jlcitkszu-yy8yw35wom.gz
 C:\Users\perte\OneDrive\Desktop\WhistleblowingApp\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\perte\OneDrive\Desktop\WhistleblowingApp\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\Users\perte\OneDrive\Desktop\WhistleblowingApp\obj\Debug\net9.0\staticwebassets.development.json
@@ -150,3 +149,4 @@ C:\Users\perte\OneDrive\Desktop\WhistleblowingApp\obj\Debug\net9.0\refint\Whistl
 C:\Users\perte\OneDrive\Desktop\WhistleblowingApp\obj\Debug\net9.0\WhistleblowingApp.pdb
 C:\Users\perte\OneDrive\Desktop\WhistleblowingApp\obj\Debug\net9.0\WhistleblowingApp.genruntimeconfig.cache
 C:\Users\perte\OneDrive\Desktop\WhistleblowingApp\obj\Debug\net9.0\ref\WhistleblowingApp.dll
+C:\Users\perte\OneDrive\Desktop\WhistleblowingApp\obj\Debug\net9.0\compressed\6jlcitkszu-qwm0mt91pq.gz
