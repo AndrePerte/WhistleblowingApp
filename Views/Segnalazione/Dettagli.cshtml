@@ -68,10 +68,10 @@
                         <div class="dtl-col-list">
                             <p class="dtl-label">Altri a Conoscenza:</p>
                             <div class="dtl-list-bg">
-                                @if (!string.IsNullOrWhiteSpace(Model.AltriConoscenza))
+                                @if (!string.IsNullOrWhiteSpace(Model.AltriAConoscenza))
                                 {
                                     <ul class="dtl-list">
-                                        @foreach (var persona in Model.AltriConoscenza.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                                        @foreach (var persona in Model.AltriAConoscenza.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                                         {
                                             <li>@persona.Trim()</li>
                                         }
@@ -141,6 +141,9 @@
     <div class="dtl-card mb-4">
         <div class="dtl-card-header">
             <h5 class="dtl-card-title">Allegati</h5>
+    <div class="card mb-4">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Allegati</h4>
         </div>
         <div class="dtl-card-body">
             <table class="dtl-table">
@@ -150,41 +153,80 @@
                         <th>Data di caricamento</th>
                         <th>Tipo</th>
                         <th>Dimensione File</th>
+                        <th>Azioni</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Screenshot.png</td>
-                        <td>11-12-2023 11:18</td>
-                        <td>PNG</td>
-                        <td>5 MB</td>
-                    </tr>
+                    @foreach (var allegato in Model.Allegati.OrderByDescending(a => a.DataCaricamento))
+                    {
+                        <tr>
+                            <td>
+                            <a href="/@allegato.FilePath" target="_blank">@allegato.NomeFile</a>
+                        </td>
+                            <td>@allegato.DataCaricamento.ToString("dd-MM-yyyy HH:mm")</td>
+                            <td>@allegato.TipoMime.Split('/').Last()</td>
+                            <td>@(allegato.Dimensione / 1024) KB</td>
+                            
+                            <td>
+                                <form asp-action="DeleteAttachment" method="post" style="display:inline;">
+                                    <input type="hidden" name="id" value="@allegato.Id" />
+                                    <button type="submit" class="btn btn-danger btn-sm">Cancella</button>
+                                </form>
+                            </td>
+                            
+                        </tr>
+                    }
                 </tbody>
             </table>
-            <div class="dtl-upload-area">
-                <label for="fileUpload" class="dtl-label">Carica un file (massimo 25 MB)</label>
-                <input type="file" id="fileUpload" name="fileUpload" accept=".png,.jpg,.jpeg" class="dtl-input-file" />
-                <p class="dtl-muted">Max File size: 25 MB</p>
-            </div>
+            <form asp-action="CaricaFile" method="post" enctype="multipart/form-data" class="mt-3">
+                <input type="hidden" name="segnalazioneId" value="@Model.Id" />
+                <div class="mb-3">
+                    <label for="fileUpload">Carica un file (massimo 25 MB)</label>
+                    <input type="file" id="fileUpload" name="file" accept=".png,.jpg,.jpeg" class="form-control" />
+                    <p class="text-muted">Max File size: 25 MB</p>
+                    <button type="submit" class="btn btn-primary mt-2">Carica</button>
+                </div>
+            </form>
+
+            @if (!string.IsNullOrEmpty(TempData?.Peek("NomeFile") as string))
+            {
+                <div class="mt-2 text-success">
+                    File caricato: @TempData["NomeFile"]
+                </div>
+            }
         </div>
     </div>
 
-    <!-- Sezione Commenti -->
-    <div class="dtl-card mb-4">
-        <div class="dtl-card-header">
-            <h5 class="dtl-card-title">Commenti</h5>
+    <!-- Sezione Chat -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Chat con Operatore</h5>
         </div>
-        <div class="dtl-card-body dtl-commenti">
-            <div class="dtl-commenti-testo">
-                <p>Salve, le chiedo di allegare una screenshot nell'apposito riquadro qui sopra e di darmi conferma.</p>
+        <div class="card-body">
+            <!-- Area chat -->
+            <div id="chatBox" style="max-height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9;">
+                @foreach (var messaggio in Model.MessaggiChat.OrderBy(m => m.DataInvio))
+                {
+                    <div class="d-flex flex-column @(messaggio.Mittente == "Utente" ? "align-items-end" : "") mb-2">
+                        <strong>@(messaggio.Mittente)</strong>
+                        <span class="bg-@(messaggio.Mittente == "Utente" ? "success text-white" : "light") p-2 rounded">
+                            @messaggio.Testo
+                        </span>
+                    </div>
+                }
             </div>
-            <div class="dtl-form-btnrow">
-                <button type="button" class="dtl-btn-invia">Invia</button>
-            </div>
+
+            <!-- Form per rispondere -->
+            <form asp-action="InviaMessaggio" id="chatForm" method="post" class="mt-3 d-flex">
+                <input type="hidden" name="segnalazioneId" value="@Model.Id" />
+                <input type="text" name="testo" class="form-control me-2" placeholder="Scrivi una risposta..." required />
+                <button type="submit" class="btn btn-success">Invia</button>
+            </form>
         </div>
     </div>
+
 </div>
-
+        
 @section Scripts {
 <script>
     const form = document.getElementById('identitaForm');
@@ -215,5 +257,24 @@
             btnAnnulla.style.display = 'none'; 
         }, 100);
     });
+
+    document.getElementById("chatForm")?.addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const url = this.getAttribute("action");
+
+            const response = await fetch(url, {
+                method: "POST",
+                body: new URLSearchParams(formData)
+            });
+
+            if (response.ok) {
+                location.reload();
+            }
+            else {
+                alert("Errore durante l'invio del messaggio");
+            }
+        });
 </script>
 }

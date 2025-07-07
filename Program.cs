@@ -6,9 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-// Use In-Memory Database
+var connectionString = "Data Source=whistleblowing.db";
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseInMemoryDatabase("WhistleblowingDB"));
+    options.UseSqlite(connectionString));
 
 var app = builder.Build();
 

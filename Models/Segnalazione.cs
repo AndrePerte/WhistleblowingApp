@@ -4,11 +4,10 @@ namespace WhistleblowingApp.Models
     {
         required public int Id { get; set; }
 
-        public string? Codice { get; set; } // Codice unico a 10 cifre
+        public string Codice { get; set; } = string.Empty;
 
         required public string Descrizione { get; set; }
         public string? PersoneCoinvolte { get; set; }
-        public string? AltriConoscenza { get; set; }
         public string? AltriAConoscenza { get; set; }
 
         public DateTime? DataIllecito { get; set; }
@@ -24,5 +23,7 @@ namespace WhistleblowingApp.Models
 
         public string Stato { get; set; } = "In attesa";
         public DateTime DataCreazione { get; set; } = DateTime.Now;
+        public ICollection<MessaggioChat> MessaggiChat { get; set; } = new List<MessaggioChat>();
+        public ICollection<Allegato> Allegati { get; set; } = new List<Allegato>();
     }
 }
