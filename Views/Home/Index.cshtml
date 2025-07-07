@@ -7,13 +7,13 @@
         Il D.Lgs. n. 24/2023 ha introdotto un complesso di prescrizioni e regole volte a promuovere l’adozione ed attuazione di un adeguato sistema di gestione delle segnalazioni di condotte indebite, con l’obiettivo di favorire l’emersione di illeciti o comunque di situazioni di rischio.
     </p>
 
-<a asp-controller="Segnalazione" asp-action="Create" class="bottone-principale">Invia una Segnalazione</a>
+<a asp-controller="Segnalazione" asp-action="Create" class="btn-principale">Invia una Segnalazione</a>
 
     <div class="sezione-codice-accesso">
         <p>Digita qui il codice che hai ottenuto da una precedente segnalazione per accedervi:</p>
         <form asp-controller="Segnalazione" asp-action="Access" class="form-accesso-codice" method="post">
             <input type="text" class="input-codice" placeholder="Codice Segnalazione" name="codice" />
-            <button type="submit" class="bottone-invia-codice">Invia</button>
+            <button type="submit" class="btn-invia-codice">Invia</button>
         </form>
     </div>
 
@@ -29,6 +29,6 @@
 
     <div class="sezione-pdf">
         <span>Se vuoi saperne di più sul whistleblowing, clicca qui:</span>
-        <a href="@Url.Action("DownloadPDF", "Home")" class="bottone-pdf">PDF</a>
+        <a href="@Url.Action("DownloadPDF", "Home")" class="btn-pdf">PDF</a>
     </div>
 </main>

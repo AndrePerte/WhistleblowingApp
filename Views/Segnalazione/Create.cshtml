@@ -4,82 +4,91 @@
     ViewData["Title"] = "Invia una Segnalazione";
 }
 
-<div class="segnalazione-create-wrapper">
-    <div class="segnalazione-avviso">
+<div class="sgn-create-wrapper">
+    <div class="sgn-avviso">
         Ricorda che queste informazioni possono avere importanza giuridica e/o legale. Impegnati a mantenerne la dovuta riservatezza.
     </div>
-    <form asp-action="Submit" method="post" class="segnalazione-form-wide">
-        <div class="segnalazione-field">
-            <label for="Descrizione">Descrizione: <span style="color:red">*</span></label>
-            <textarea asp-for="Descrizione" id="Descrizione" class="segnalazione-textarea" rows="4" required></textarea>
+    <form asp-action="Submit" method="post" class="sgn-form-wide">
+        <div class="sgn-field">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <label for="Descrizione" style="margin-bottom:0;">Descrizione: <span style="color:red">*</span></label>
+                <span class="sgn-char-counter sgn-char-counter-top" id="counter-Descrizione">0 / 800</span>
+            </div>
+            <textarea asp-for="Descrizione" id="Descrizione" class="sgn-textarea sgn-textarea-lunga" rows="6" required maxlength="800"></textarea>
         </div>
-        <div class="segnalazione-field">
-            <label for="PersoneCoinvolte">Persone Coinvolte:</label>
-            <textarea asp-for="PersoneCoinvolte" id="PersoneCoinvolte" class="segnalazione-textarea" rows="3"></textarea>
+        <div class="sgn-field">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <label for="PersoneCoinvolte" style="margin-bottom:0;">Persone Coinvolte:</label>
+                <span class="sgn-char-counter sgn-char-counter-top" id="counter-PersoneCoinvolte">0 / 300</span>
+            </div>
+            <textarea asp-for="PersoneCoinvolte" id="PersoneCoinvolte" class="sgn-textarea" rows="3" maxlength="300"></textarea>
         </div>
-        <div class="segnalazione-field">
-            <label for="AltriAConoscenza">Altri a Conoscenza:</label>
-            <textarea asp-for="AltriAConoscenza" id="AltriAConoscenza" class="segnalazione-textarea" rows="3"></textarea>
+        <div class="sgn-field">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <label for="AltriAConoscenza" style="margin-bottom:0;">Altri a Conoscenza:</label>
+                <span class="sgn-char-counter sgn-char-counter-top" id="counter-AltriAConoscenza">0 / 300</span>
+            </div>
+            <textarea asp-for="AltriAConoscenza" id="AltriAConoscenza" class="sgn-textarea" rows="3" maxlength="300"></textarea>
         </div>
-        <div class="segnalazione-row-identita segnalazione-row-illecito">
-            <div class="segnalazione-field segnalazione-field-illecito">
+        <div class="sgn-row-identita sgn-row-illecito">
+            <div class="sgn-field sgn-field-illecito">
                 <label for="DataIllecito">Data Illecito:</label>
-                <input asp-for="DataIllecito" id="DataIllecito" class="segnalazione-identita-input" type="date" placeholder="GG/MM/AAAA" />
+                <input asp-for="DataIllecito" id="DataIllecito" class="sgn-identita-input" type="date" placeholder="GG/MM/AAAA" />
             </div>
-            <div class="segnalazione-field segnalazione-field-illecito">
+            <div class="sgn-field sgn-field-illecito">
                 <label for="OraIllecito">Ora Illecito:</label>
-                <input id="OraIllecito" name="OraIllecito" class="segnalazione-identita-input" type="time" step="60" />
+                <input id="OraIllecito" name="OraIllecito" class="sgn-identita-input" type="time" step="60" />
             </div>
         </div>
-        <div class="segnalazione-row-domande">
-            <div class="segnalazione-domanda">
+        <div class="sgn-row-domande">
+            <div class="sgn-domanda">
                 <label>Ritieni che questa segnalazione possa comportare un rischio di ritorsione? <span style="color:red">*</span></label>
-                <div class="segnalazione-radio-group">
-                    <input type="radio" name="RischioRitorsione" id="RischioSi" value="true" required class="segnalazione-radio" /> <label for="RischioSi" class="segnalazione-radio-label">Sì</label>
-                    <input type="radio" name="RischioRitorsione" id="RischioNo" value="false" class="segnalazione-radio" /> <label for="RischioNo" class="segnalazione-radio-label">No</label>
+                <div class="sgn-radio-group">
+                    <input type="radio" name="RischioRitorsione" id="RischioSi" value="true" required class="sgn-radio" /> <label for="RischioSi" class="sgn-radio-label">Sì</label>
+                    <input type="radio" name="RischioRitorsione" id="RischioNo" value="false" class="sgn-radio" /> <label for="RischioNo" class="sgn-radio-label">No</label>
                 </div>
             </div>
-            <div class="segnalazione-domanda">
+            <div class="sgn-domanda">
                 <label>Ritieni che la violazione segnalata possa costituire un pericolo per il pubblico interesse? <span style="color:red">*</span></label>
-                <div class="segnalazione-radio-group">
-                    <input type="radio" name="PericoloPubblico" id="PericoloSi" value="true" required class="segnalazione-radio" /> <label for="PericoloSi" class="segnalazione-radio-label">Sì</label>
-                    <input type="radio" name="PericoloPubblico" id="PericoloNo" value="false" class="segnalazione-radio" /> <label for="PericoloNo" class="segnalazione-radio-label">No</label>
+                <div class="sgn-radio-group">
+                    <input type="radio" name="PericoloPubblico" id="PericoloSi" value="true" required class="sgn-radio" /> <label for="PericoloSi" class="sgn-radio-label">Sì</label>
+                    <input type="radio" name="PericoloPubblico" id="PericoloNo" value="false" class="sgn-radio" /> <label for="PericoloNo" class="sgn-radio-label">No</label>
                 </div>
             </div>
         </div>
-        <div class="segnalazione-domanda">
+        <div class="sgn-domanda">
             <label>Vuoi fornire informazioni identificative? Potrai sempre farlo in un secondo momento.</label>
-            <div class="segnalazione-radio-group">
-                <input type="radio" name="FornisciIdentita" id="IdentitaSi" value="Si" class="segnalazione-radio" /> <label for="IdentitaSi" class="segnalazione-radio-label">Sì</label>
-                <input type="radio" name="FornisciIdentita" id="IdentitaNo" value="No" class="segnalazione-radio" checked /> <label for="IdentitaNo" class="segnalazione-radio-label">No</label>
+            <div class="sgn-radio-group">
+                <input type="radio" name="FornisciIdentita" id="IdentitaSi" value="Si" class="sgn-radio" /> <label for="IdentitaSi" class="sgn-radio-label">Sì</label>
+                <input type="radio" name="FornisciIdentita" id="IdentitaNo" value="No" class="sgn-radio" checked /> <label for="IdentitaNo" class="sgn-radio-label">No</label>
             </div>
         </div>
         <div id="identitaFields" style="display:none;">
-            <div class="segnalazione-row-identita">
-                <div class="segnalazione-field">
+            <div class="sgn-row-identita">
+                <div class="sgn-field">
                     <label for="Nome">Nome</label>
-                    <input asp-for="Nome" id="Nome" class="segnalazione-identita-input" />
+                    <input asp-for="Nome" id="Nome" class="sgn-identita-input" />
                 </div>
-                <div class="segnalazione-field">
+                <div class="sgn-field">
                     <label for="Cognome">Cognome</label>
-                    <input asp-for="Cognome" id="Cognome" class="segnalazione-identita-input" />
+                    <input asp-for="Cognome" id="Cognome" class="sgn-identita-input" />
                 </div>
             </div>
-            <div class="segnalazione-row-identita">
-                <div class="segnalazione-field">
+            <div class="sgn-row-identita">
+                <div class="sgn-field">
                     <label for="Email">Email</label>
-                    <input asp-for="Email" id="Email" class="segnalazione-identita-input" />
+                    <input asp-for="Email" id="Email" class="sgn-identita-input" />
                 </div>
-                <div class="segnalazione-field">
+                <div class="sgn-field">
                     <label for="Telefono">Telefono</label>
-                    <input asp-for="Telefono" id="Telefono" class="segnalazione-identita-input" type="tel" pattern="[0-9]{10}" inputmode="numeric" title="Inserisci un numero di telefono italiano di 10 cifre" maxlength="10" />
+                    <input asp-for="Telefono" id="Telefono" class="sgn-identita-input" type="tel" pattern="[0-9]{10}" inputmode="numeric" title="Inserisci un numero di telefono italiano di 10 cifre" maxlength="10" />
                 </div>
             </div>
         </div>
-        <div class="segnalazione-checkbox-invia-row">
-            <input type="checkbox" id="consapevolezzaCheckbox" class="segnalazione-checkbox-input" required />
-            <label class="segnalazione-checkbox-label-small" for="consapevolezzaCheckbox">Sono a conoscenza che queste informazioni sono da ritenersi confidenziali e vanno mantenute con la dovuta riservatezza</label>
-            <button type="submit" class="segnalazione-btn-invia" id="submitButton" disabled>Invia</button>
+        <div class="sgn-checkbox-invia-row">
+            <input type="checkbox" id="consapevolezzaCheckbox" class="sgn-checkbox-input" required />
+            <label class="sgn-checkbox-label-small" for="consapevolezzaCheckbox">Sono a conoscenza che queste informazioni sono da ritenersi confidenziali e vanno mantenute con la dovuta riservatezza</label>
+            <button type="submit" class="sgn-btn-invia" id="submitButton" disabled>Invia</button>
         </div>
     </form>
 </div>
@@ -101,5 +110,19 @@
         document.getElementById('Telefono').addEventListener('input', function (e) {
             this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);
         });
+
+        // Contatori caratteri live
+        function setupCharCounter(textareaId, counterId, max) {
+            var textarea = document.getElementById(textareaId);
+            var counter = document.getElementById(counterId);
+            function updateCounter() {
+                counter.textContent = textarea.value.length + ' / ' + max;
+            }
+            textarea.addEventListener('input', updateCounter);
+            updateCounter();
+        }
+        setupCharCounter('Descrizione', 'counter-Descrizione', 800);
+        setupCharCounter('PersoneCoinvolte', 'counter-PersoneCoinvolte', 300);
+        setupCharCounter('AltriAConoscenza', 'counter-AltriAConoscenza', 300);
     </script>
 }

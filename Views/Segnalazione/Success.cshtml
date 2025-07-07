@@ -1,26 +1,26 @@
 @model WhistleblowingApp.Models.Segnalazione
 
-<div class="success-container">
-    <h1 class="success-title">Segnalazione inviata con Successo</h1>
-    <p class="success-desc">
+<div class="scs-container">
+    <h1 class="scs-title">Segnalazione inviata con Successo</h1>
+    <p class="scs-desc">
         Il seguente è il codice con cui potrai accedervi.<br />
         Ricorda di copiarlo e conservarlo per poter accedere a questa segnalazione e al suo esito.
     </p>
-    <div class="success-code-row">
-        <span class="success-code">@Model.Codice</span>
-        <button onclick="copyCode(this)" class="success-copy-btn">Copia</button>
+    <div class="scs-code-row">
+        <span class="scs-code">@Model.Codice</span>
+        <button onclick="copyCode(this)" class="scs-copy-btn">Copia</button>
     </div>
-    <div class="success-checkbox-row">
-        <input type="checkbox" id="confirmCheck" class="success-checkbox" />
-        <label for="confirmCheck" class="success-checkbox-label">Confermo di aver copiato il codice</label>
+    <div class="scs-checkbox-row">
+        <input type="checkbox" id="confirmCheck" class="scs-checkbox" />
+        <label for="confirmCheck" class="scs-checkbox-label">Confermo di aver copiato il codice</label>
     </div>
-    <a id="continueLink" class="success-view-btn" disabled>Vedi Segnalazione</a>
+    <a id="continueLink" class="scs-view-btn" disabled>Vedi Segnalazione</a>
 </div>
 
 @section Scripts {
 <script>
     function copyCode(btn) {
-        const code = document.querySelector('.success-code').textContent;
+        const code = document.querySelector('.scs-code').textContent;
         navigator.clipboard.writeText(code).then(function () {
             const originalText = btn.textContent;
             btn.textContent = 'Copiato!';
