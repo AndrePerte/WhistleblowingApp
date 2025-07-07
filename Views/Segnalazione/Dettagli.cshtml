@@ -3,14 +3,14 @@
 @{
     ViewData["Title"] = "Whistleblowing - Dettagli Segnalazione";
     var dataSegnalazione = Model.DataCreazione;
-    string dataSegnalazioneStr = null;
-    if (dataSegnalazione != null)
-    {
-        var hour = dataSegnalazione.Hour;
-        var minute = dataSegnalazione.Minute;
-        var ampm = hour < 12 ? "am" : "pm";
-        dataSegnalazioneStr = $"{dataSegnalazione:dd-MM-yyyy}<span class='dtl-date-gap'></span>{hour:D2}:{minute:D2}{ampm}";
-    }
+    string dataSegnalazioneStr = "";
+    //if (dataSegnalazione != null)
+    //{
+    var hour = dataSegnalazione.Hour;
+    var minute = dataSegnalazione.Minute;
+    var ampm = hour < 12 ? "am" : "";
+    dataSegnalazioneStr = $"{dataSegnalazione:dd-MM-yyyy}<span class='dtl-date-gap'></span>{hour:D2}:{minute:D2}{ampm}";
+    //}
     var dataScadenza = dataSegnalazione.AddMonths(3);
     var dataScadenzaStr = dataScadenza.ToString("dd-MM-yyyy");
 }
@@ -70,12 +70,12 @@
                                     var dataIllecito = Model.DataIllecito;
                                     var oraIllecito = Model.OraIllecito; // TimeSpan?
                                     var dataStr = dataIllecito.HasValue ? dataIllecito.Value.ToString("dd-MM-yyyy") : null;
-                                    string oraStr = null;
+                                    string oraStr = "";
                                     if (oraIllecito.HasValue)
                                     {
-                                        var hour = oraIllecito.Value.Hours;
-                                        var minute = oraIllecito.Value.Minutes;
-                                        var ampm = hour < 12 ? "am" : "pm";
+                                        hour = oraIllecito.Value.Hours;
+                                        minute = oraIllecito.Value.Minutes;
+                                        ampm = hour < 12 ? "am" : "";
                                         oraStr = $"{hour:D2}:{minute:D2}{ampm}";
                                     }
                                     if (!string.IsNullOrEmpty(dataStr) && !string.IsNullOrEmpty(oraStr))

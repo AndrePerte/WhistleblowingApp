@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\crist\\Desktop\\Uni\\progetto-uomo\\WhistleblowingApp\\WhistleblowingApp.csproj": {}
+    "C:\\Users\\perte\\OneDrive\\Desktop\\WhistleblowingApp\\WhistleblowingApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\crist\\Desktop\\Uni\\progetto-uomo\\WhistleblowingApp\\WhistleblowingApp.csproj": {
+    "C:\\Users\\perte\\OneDrive\\Desktop\\WhistleblowingApp\\WhistleblowingApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\crist\\Desktop\\Uni\\progetto-uomo\\WhistleblowingApp\\WhistleblowingApp.csproj",
+        "projectUniqueName": "C:\\Users\\perte\\OneDrive\\Desktop\\WhistleblowingApp\\WhistleblowingApp.csproj",
         "projectName": "WhistleblowingApp",
-        "projectPath": "C:\\Users\\crist\\Desktop\\Uni\\progetto-uomo\\WhistleblowingApp\\WhistleblowingApp.csproj",
-        "packagesPath": "C:\\Users\\crist\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\crist\\Desktop\\Uni\\progetto-uomo\\WhistleblowingApp\\obj\\",
+        "projectPath": "C:\\Users\\perte\\OneDrive\\Desktop\\WhistleblowingApp\\WhistleblowingApp.csproj",
+        "packagesPath": "C:\\Users\\perte\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\perte\\OneDrive\\Desktop\\WhistleblowingApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\crist\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\perte\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -80,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
