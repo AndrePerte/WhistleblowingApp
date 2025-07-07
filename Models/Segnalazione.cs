@@ -24,5 +24,6 @@ namespace WhistleblowingApp.Models
         public string Stato { get; set; } = "In attesa";
         public DateTime DataCreazione { get; set; } = DateTime.Now;
         public ICollection<MessaggioChat> MessaggiChat { get; set; } = new List<MessaggioChat>();
+        public ICollection<Allegato> Allegati { get; set; } = new List<Allegato>();
     }
 }
