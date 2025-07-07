@@ -182,7 +182,7 @@ namespace WhistleblowingApp.Controllers
                 return NotFound();
             }
             
-            string filePath = Path.Combine(Directory.GetCurrentDirectory(), allegato.FilePath);
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\"+allegato.FilePath);
             if (System.IO.File.Exists(filePath))
             {
                 System.IO.File.Delete(filePath);

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\perte\\OneDrive\\Desktop\\Whistleblowing\\WhistleblowingApp\\WhistleblowingApp.csproj": {}
+    "C:\\Users\\perte\\OneDrive\\Desktop\\WhistleblowingApp\\WhistleblowingApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\perte\\OneDrive\\Desktop\\Whistleblowing\\WhistleblowingApp\\WhistleblowingApp.csproj": {
+    "C:\\Users\\perte\\OneDrive\\Desktop\\WhistleblowingApp\\WhistleblowingApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\perte\\OneDrive\\Desktop\\Whistleblowing\\WhistleblowingApp\\WhistleblowingApp.csproj",
+        "projectUniqueName": "C:\\Users\\perte\\OneDrive\\Desktop\\WhistleblowingApp\\WhistleblowingApp.csproj",
         "projectName": "WhistleblowingApp",
-        "projectPath": "C:\\Users\\perte\\OneDrive\\Desktop\\Whistleblowing\\WhistleblowingApp\\WhistleblowingApp.csproj",
+        "projectPath": "C:\\Users\\perte\\OneDrive\\Desktop\\WhistleblowingApp\\WhistleblowingApp.csproj",
         "packagesPath": "C:\\Users\\perte\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\perte\\OneDrive\\Desktop\\Whistleblowing\\WhistleblowingApp\\obj\\",
+        "outputPath": "C:\\Users\\perte\\OneDrive\\Desktop\\WhistleblowingApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\perte\\AppData\\Roaming\\NuGet\\NuGet.Config"
