@@ -8,7 +8,7 @@
 </head>
 <body class="layout-body">
     <header>
-        <div class="header-structure">
+        <div class="header-container">
             <div class="header-icon left-icon">
                 <a href="/">
                     <img src="~/images/spia-icon.png" alt="Spia" asp-append-version="true" />
@@ -28,11 +28,7 @@
         @RenderBody()
     </main>
 
-    <footer class="footer-custom">
-        <div class="footer-container">
-            <span class="footer-text nome-azienda">© 2025 Whistleblowing</span>
-        </div>
-    </footer>
+    <footer class="footer-text">© 2025 WHISTLEBLOWING</footer>
 
     @RenderSection("Scripts", required: false)
 </body>

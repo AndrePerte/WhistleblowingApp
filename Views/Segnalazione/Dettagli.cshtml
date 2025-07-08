@@ -4,13 +4,10 @@
     ViewData["Title"] = "Whistleblowing - Dettagli Segnalazione";
     var dataSegnalazione = Model.DataCreazione;
     string dataSegnalazioneStr = "";
-    //if (dataSegnalazione != null)
-    //{
     var hour = dataSegnalazione.Hour;
     var minute = dataSegnalazione.Minute;
     var ampm = hour < 12 ? "am" : "";
     dataSegnalazioneStr = $"{dataSegnalazione:dd-MM-yyyy}<span class='dtl-date-gap'></span>{hour:D2}:{minute:D2}{ampm}";
-    //}
     var dataScadenza = dataSegnalazione.AddMonths(3);
     var dataScadenzaStr = dataScadenza.ToString("dd-MM-yyyy");
 }
@@ -42,88 +39,76 @@
             </div>
         </div>
     </div>
-    <!-- Corpo principale a due colonne -->
     <div class="dtl-row">
-        <!-- Colonna Sinistra: Riepilogo Segnalazione -->
         <div class="dtl-col-sx">
             <div class="dtl-card">
-                <div class="dtl-card-body">
-                    <h5 class="dtl-card-title">Riepilogo Segnalazione</h5>
-                    <div class="sgn-field">
-                        <label for="Descrizione" class="dtl-label">Descrizione:</label>
-                        <div class="sgn-textarea">@(string.IsNullOrEmpty(Model.Descrizione) ? "Nessuna descrizione fornita" : Model.Descrizione)</div>
+                <h5 class="dtl-card-title">Riepilogo Segnalazione</h5>
+                <div class="sgn-field">
+                    <label for="Descrizione" class="dtl-label">Descrizione:</label>
+                    <div class="sgn-textarea">@(string.IsNullOrEmpty(Model.Descrizione) ? "Nessuna descrizione fornita" : Model.Descrizione)</div>
+                </div>
+                <div class="sgn-field">
+                    <label for="PersoneCoinvolte" class="dtl-label">Persone Coinvolte:</label>
+                    <div class="sgn-textarea">@(string.IsNullOrWhiteSpace(Model.PersoneCoinvolte) ? "Nessun dato disponibile." : Model.PersoneCoinvolte)</div>
+                </div>
+                <div class="sgn-field">
+                    <label for="AltriAConoscenza" class="dtl-label">Altri a Conoscenza:</label>
+                    <div class="sgn-textarea">@(string.IsNullOrWhiteSpace(Model.AltriAConoscenza) ? "Nessun dato disponibile." : Model.AltriAConoscenza)</div>
+                </div>
+                <div>
+                    <p class="dtl-label">Data Illecito:</p>
+                    <span class="dtl-date">
+                        @{
+                            var dataIllecito = Model.DataIllecito;
+                            var oraIllecito = Model.OraIllecito;
+                            var dataStr = dataIllecito.HasValue ? dataIllecito.Value.ToString("dd-MM-yyyy") : null;
+                            string oraStr = "";
+                            if (oraIllecito.HasValue)
+                            {
+                                hour = oraIllecito.Value.Hours;
+                                minute = oraIllecito.Value.Minutes;
+                                ampm = hour < 12 ? "am" : "";
+                                oraStr = $"{hour:D2}:{minute:D2}{ampm}";
+                            }
+                            if (!string.IsNullOrEmpty(dataStr) && !string.IsNullOrEmpty(oraStr))
+                            {
+                                @Html.Raw($"{dataStr}<span class='dtl-date-gap'></span>{oraStr}")
+                            }
+                            else if (!string.IsNullOrEmpty(dataStr))
+                            {
+                                @dataStr
+                            }
+                            else if (!string.IsNullOrEmpty(oraStr))
+                            {
+                                @oraStr
+                            }
+                            else
+                            {
+                                <span>Nessuna data selezionata</span>
+                            }
+                        }
+                    </span>
+                </div>
+                <div>
+                    <span class="dtl-label">Rischio ritorsione:</span>
+                    <div class="sgn-radio-group">
+                        <input type="radio" class="sgn-radio" id="RischioSiDett" name="RischioRitorsioneDett" value="true" disabled @(Model.RischioRitorsione ? "checked" : "") />
+                        <label for="RischioSiDett" class="sgn-radio-label">Sì</label>
+                        <input type="radio" class="sgn-radio" id="RischioNoDett" name="RischioRitorsioneDett" value="false" disabled @(!Model.RischioRitorsione ? "checked" : "") />
+                        <label for="RischioNoDett" class="sgn-radio-label">No</label>
                     </div>
-                    <div class="sgn-field">
-                        <label for="PersoneCoinvolte" class="dtl-label">Persone Coinvolte:</label>
-                        <div class="sgn-textarea">@(string.IsNullOrWhiteSpace(Model.PersoneCoinvolte) ? "Nessun dato disponibile." : Model.PersoneCoinvolte)</div>
-                    </div>
-                    <div class="sgn-field">
-                        <label for="AltriAConoscenza" class="dtl-label">Altri a Conoscenza:</label>
-                        <div class="sgn-textarea">@(string.IsNullOrWhiteSpace(Model.AltriAConoscenza) ? "Nessun dato disponibile." : Model.AltriAConoscenza)</div>
-                    </div>
-
-                    <div class="dtl-row-info">
-                        <div class="dtl-col-info">
-                            <p class="dtl-label">Data Illecito:</p>
-                            <span class="dtl-badge">
-                                @{
-                                    var dataIllecito = Model.DataIllecito;
-                                    var oraIllecito = Model.OraIllecito; // TimeSpan?
-                                    var dataStr = dataIllecito.HasValue ? dataIllecito.Value.ToString("dd-MM-yyyy") : null;
-                                    string oraStr = "";
-                                    if (oraIllecito.HasValue)
-                                    {
-                                        hour = oraIllecito.Value.Hours;
-                                        minute = oraIllecito.Value.Minutes;
-                                        ampm = hour < 12 ? "am" : "";
-                                        oraStr = $"{hour:D2}:{minute:D2}{ampm}";
-                                    }
-                                    if (!string.IsNullOrEmpty(dataStr) && !string.IsNullOrEmpty(oraStr))
-                                    {
-                                        @Html.Raw($"{dataStr}<span class='dtl-date-gap'></span>{oraStr}")
-                                    }
-                                    else if (!string.IsNullOrEmpty(dataStr))
-                                    {
-                                        @dataStr
-                                    }
-                                    else if (!string.IsNullOrEmpty(oraStr))
-                                    {
-                                        @oraStr
-                                    }
-                                    else
-                                    {
-                                        <span class="dtl-muted">Nessuna data selezionata</span>
-                                    }
-                                }
-                            </span>
-                        </div>
-                                                <div class="dtl-col-info">
-                            <div class="dtl-info-group">
-                                <div>
-                                    <span class="dtl-label">Rischio ritorsione:</span>
-                                    <div class="sgn-radio-group">
-                                        <input type="radio" class="sgn-radio" id="RischioSiDett" name="RischioRitorsioneDett" value="true" disabled @(Model.RischioRitorsione ? "checked" : "") />
-                                        <label for="RischioSiDett" class="sgn-radio-label">Sì</label>
-                                        <input type="radio" class="sgn-radio" id="RischioNoDett" name="RischioRitorsioneDett" value="false" disabled @(!Model.RischioRitorsione ? "checked" : "") />
-                                        <label for="RischioNoDett" class="sgn-radio-label">No</label>
-                                    </div>
-                                </div>
-                                <div>
-                                    <span class="dtl-label">Pericolo imminente:</span>
-                                    <div class="sgn-radio-group">
-                                        <input type="radio" class="sgn-radio" id="PericoloSiDett" name="PericoloImminenteDett" value="true" disabled @(Model.PericoloImminente ? "checked" : "") />
-                                        <label for="PericoloSiDett" class="sgn-radio-label">Sì</label>
-                                        <input type="radio" class="sgn-radio" id="PericoloNoDett" name="PericoloImminenteDett" value="false" disabled @(!Model.PericoloImminente ? "checked" : "") />
-                                        <label for="PericoloNoDett" class="sgn-radio-label">No</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                </div>
+                <div>
+                    <span class="dtl-label">Pericolo imminente:</span>
+                    <div class="sgn-radio-group">
+                        <input type="radio" class="sgn-radio" id="PericoloSiDett" name="PericoloImminenteDett" value="true" disabled @(Model.PericoloImminente ? "checked" : "") />
+                        <label for="PericoloSiDett" class="sgn-radio-label">Sì</label>
+                        <input type="radio" class="sgn-radio" id="PericoloNoDett" name="PericoloImminenteDett" value="false" disabled @(!Model.PericoloImminente ? "checked" : "") />
+                        <label for="PericoloNoDett" class="sgn-radio-label">No</label>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Colonna Destra: Riepilogo Informazioni Identificative -->
         <div class="dtl-col-dx">
             <div class="dtl-card">
                 <h5 class="dtl-card-title">Riepilogo Informazioni Identificative</h5>
@@ -143,7 +128,7 @@
                     </div>
                     <div class="dtl-form-group">
                         <label for="Telefono" class="dtl-label">Telefono</label>
-                        <input asp-for="Telefono" class="dtl-input" disabled />
+                        <input asp-for="Telefono" id="Telefono" class="dtl-input" type="tel" pattern="[0-9]{10}" inputmode="numeric" title="Inserisci un numero di telefono italiano di 10 cifre" maxlength="10" disabled />
                     </div>
                     <div class="dtl-form-btnrow">
                         <button type="button" id="btnAnnulla" class="dtl-btn-annulla">Annulla</button>
@@ -154,11 +139,8 @@
         </div>
     </div>
 
-    <!-- Sezione Allegati -->
-    <div class="dtl-card mb-4">
-            <h5 class="dtl-card-title">Allegati</h5>
-    <div class="card mb-4">
-        <div class="dtl-card-body">
+    <div class="dtl-card">
+        <h5 class="dtl-card-title">Allegati</h5>
             <table class="dtl-table">
                 <thead>
                     <tr>
@@ -186,17 +168,14 @@
                                     <button type="submit" class="btn-canc-img">Cancella</button>
                                 </form>
                             </td>
-                            
                         </tr>
                     }
                 </tbody>
             </table>
-            <form asp-action="CaricaFile" method="post" enctype="multipart/form-data" class="mt-3">
+            <form asp-action="CaricaFile" method="post" enctype="multipart/form-data" >
                 <input type="hidden" name="segnalazioneId" value="@Model.Id" />
-                <div class="mb-3">
+                <div>
                     <label for="fileUpload">Carica un file (massimo 25 MB)</label>
-                    
-                    <!-- Area per trascinare e rilasciare -->
                     <div id="dropZone" class="drop-zone text-center p-4 border rounded bg-light">
                         <p class="text-muted">Trascina qui il file o fai clic per selezionare</p>
                         <input type="file" id="fileUpload" name="file" accept=".png,.jpg,.jpeg" class="d-none" required />
@@ -207,20 +186,14 @@
                                 onclick="document.getElementById('fileUpload').click();">
                             Scegli File
                         </button>
-
                     </div>
-
                     <p class="text-muted">Max File size: 25 MB</p>
                     <button type="submit" class="dtl-btn-carica">Carica</button>
                 </div>
             </form>
-        </div>
     </div>
-</div>
-<!-- Sezione Chat -->
-<div class="card dtl-card mb-4">
+    <div class="dtl-card">
     <h5 class="dtl-card-title">Chat con Operatore</h5>
-    <div class="card-body dtl-card-body">
         <div id="chatBox" class="chat-box">
             @foreach (var messaggio in Model.MessaggiChat.OrderBy(m => m.DataInvio))
             {
@@ -237,9 +210,8 @@
             <input type="hidden" name="segnalazioneId" value="@Model.Id" />
             <input type="text" name="testo" class="form-control me-2" placeholder="Scrivi una risposta..." required />
             <button type="submit" class="dtl-btn-invia">Invia</button>
-        </form>
+        </form>  
     </div>
-</div>
         
 @section Scripts {
 <script>
@@ -324,5 +296,9 @@
                 fileNameDisplay.textContent = "Nessun file selezionato";
             }
         }
+
+    document.getElementById('Telefono').addEventListener('input', function (e) {
+        this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);
+    });
 </script>
 }
